@@ -3,9 +3,9 @@
 GitHub Pages-ready version of the uploaded planner.
 
 ## Files
-- `index.html` — page structure
-- `styles.css` — styling
-- `script.js` — interactive logic
+- `index.html` — page structure/content
+- `styles.css` — colour, spacing, desing
+- `script.js` — interactions and logic
 - `.nojekyll` — prevents GitHub Pages from processing the site with Jekyll
 
 ## Publish on GitHub Pages
