@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/Winz/Downloads/Planner_13.html -->
+<html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustainability Curriculum Planner v15 — 4 Tracks + Elective Sciences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav><div class="nav-inner">
+  <span class="brand">SC × TU Sustainability Planner</span>
+  <button class="on" id="n-plan" onclick="go(&#39;plan&#39;)">4 Tracks Planner</button>
+  <button id="n-compare" onclick="go(&#39;compare&#39;)">เปรียบเทียบ 4 Tracks</button>
+  <button id="n-action" onclick="go(&#39;action&#39;)">Action Plan</button>
+  <button id="n-timeline" onclick="go(&#39;timeline&#39;)">Timeline</button>
+  <button id="n-tasks" onclick="go(&#39;tasks&#39;)">กระจายงาน</button>
+  <button id="n-reg" onclick="go(&#39;reg&#39;)">📋 ทะเบียนรายวิชา</button>
+  <button id="saveBtn" style="background:var(--orange);color:#fff;font-weight:600;border-radius:5px;padding:5px 14px;position:relative" onclick="saveHTML()">💾 Save<span id="dirtyDot" style="display:none;position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff"></span></button>
+</div></nav>
+
+<!-- ===== PLAN PAGE ===== -->
+<div class="page on" id="p-plan">
+  <h1>Study Tracks — ลาก &amp; วาง จัดรายวิชา</h1>
+  <p class="sub">กดค้างที่รายวิชาแล้วลากไปวางในเทอมที่ต้องการ · คลิกเพื่อดูคำอธิบาย · คลิก ✎ เพื่อแก้ไขรหัส/คำอธิบาย</p>
+  <div class="tabs" id="tabs"><button class="tab on" onclick="pickTrack(0)">เข้า MU → จบ MU <span class="b bmu">MU</span></button><button class="tab " onclick="pickTrack(1)">เข้า MU → จบ TU <span class="b btu">MU→TU</span></button><button class="tab " onclick="pickTrack(2)">เข้า TU → จบ MU <span class="b bmu">TU→MU</span></button><button class="tab " onclick="pickTrack(3)">เข้า TU → จบ TU <span class="b btu">TU</span></button></div>
+  <div class="info" id="trackInfo"><strong>เข้า MU → จบ MU</strong> — แผน 1 Single Degree วท.บ. ≥128 cr · เรียน MU ตลอด</div>
+  <div class="stats" id="trackStats">
+    <div class="stat"><div class="sv">124</div><div class="sl">หน่วยกิตรวม</div></div>
+    <div class="stat"><div class="sv">124</div><div class="sl">MU credits</div></div>
+    <div class="stat"><div class="sv">0</div><div class="sl">TU credits</div></div>
+    <div class="stat"><div class="sv">46</div><div class="sl">รายวิชา</div></div>
+  </div>
+  <div class="sgrid" id="semGrid"><div class="sem" data-si="0" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,0)" oncontextmenu="openCtx(event,0)">
+      <div class="sem-h"><span>ปี 1 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">25 cr</span></div>
+      <div class="sem-b " data-si="0"><div class="chip " draggable="true" data-cid="muge" data-si="0" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;muge&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
+        <span class="ccode">มมศท ๑๐๐ / MUGE 100</span>
+        <span class="cname">การศึกษาทั่วไปเพื่อการพัฒนามนุษย์</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;muge&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;muge&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="eng" data-si="0" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;eng&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
+        <span class="ccode">English</span>
+        <span class="cname">ภาษาอังกฤษ</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;eng&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;eng&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="thai" data-si="0" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;thai&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
+        <span class="ccode">ศศลท ๑๑๑ / LATP 111</span>
+        <span class="cname">ภาษาไทยเพื่อการสื่อสาร</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;thai&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;thai&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="ib" data-si="0" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ib&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๑ / SCSS 101</span>
+        <span class="cname">ชีววิทยาปัญญาบูรณาการ</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ib&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ib&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="im" data-si="0" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;im&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๒ / SCSS 102</span>
+        <span class="cname">คณิตศาสตร์ปัญญาบูรณาการ</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;im&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;im&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="ip" data-si="0" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ip&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๓ / SCSS 103</span>
+        <span class="cname">ฟิสิกส์ปัญญาบูรณาการ</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ip&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ip&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="ic" data-si="0" data-ci="6" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ic&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๔ / SCSS 104</span>
+        <span class="cname">เคมีปัญญาบูรณาการ</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ic&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ic&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="blb" data-si="0" data-ci="7" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;blb&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๕ / SCSS 105</span>
+        <span class="cname">ปฏิบัติการชีววิทยาปัญญาบูรณาการ</span>
+        <span class="ccr">1</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;blb&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;blb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="mlb" data-si="0" data-ci="8" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;mlb&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๖ / SCSS 106</span>
+        <span class="cname">ปฏิบัติการคณิตศาสตร์ปัญญาบูรณาการ</span>
+        <span class="ccr">1</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;mlb&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;mlb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="plb" data-si="0" data-ci="9" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;plb&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๗ / SCSS 107</span>
+        <span class="cname">ปฏิบัติการฟิสิกส์ปัญญาบูรณาการ</span>
+        <span class="ccr">1</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;plb&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;plb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="clb" data-si="0" data-ci="10" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;clb&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
+        <span class="ccode">วทยย ๑๐๘ / SCSS 108</span>
+        <span class="cname">ปฏิบัติการเคมีปัญญาบูรณาการ</span>
+        <span class="ccr">1</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;clb&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;clb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="lit" data-si="0" data-ci="11" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;lit&#39;,0,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
+        <span class="ccode">MU Literacy</span>
+        <span class="cname">5 Literacies</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;lit&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;lit&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,0)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="1" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,1)" oncontextmenu="openCtx(event,1)">
+      <div class="sem-h"><span>ปี 1 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
+      <div class="sem-b " data-si="1"><div class="chip " draggable="true" data-cid="e151" data-si="1" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e151&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๑๕๑ / SCSS 151</span>
+        <span class="cname">สรีรวิทยามนุษย์เบื้องต้น</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e151&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e151&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e152" data-si="1" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e152&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๑๕๒ / SCSS 152</span>
+        <span class="cname">ชีวเคมี</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e152&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e152&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e153" data-si="1" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e153&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๑๕๓ / SCSS 153</span>
+        <span class="cname">จุลชีววิทยาทั่วไป</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e153&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e153&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e158" data-si="1" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e158&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๑๕๘ / SCSS 158</span>
+        <span class="cname">นิเวศวิทยาและชีววิทยาการอนุรักษ์</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e158&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e158&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e261" data-si="1" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e261&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๖๑ / SCSS 261</span>
+        <span class="cname">สถิติประยุกต์สำหรับวิทยาศาสตร์</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e261&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e261&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e262" data-si="1" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e262&#39;,1,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๖๒ / SCSS 262</span>
+        <span class="cname">การเขียนโปรแกรมและวิทยาศาสตร์ข้อมูล</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e262&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e262&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,1)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="2" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,2)" oncontextmenu="openCtx(event,2)">
+      <div class="sem-h"><span>ปี 2 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
+      <div class="sem-b " data-si="2"><div class="chip " draggable="true" data-cid="e254" data-si="2" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e254&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๕๔ / SCSS 254</span>
+        <span class="cname">พันธุศาสตร์และชีววิทยาโมเลกุล</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e254&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e254&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e255" data-si="2" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e255&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๕๕ / SCSS 255</span>
+        <span class="cname">เคมีเชิงฟิสิกส์</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e255&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e255&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e256" data-si="2" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e256&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๕๖ / SCSS 256</span>
+        <span class="cname">ฟิสิกส์สมัยใหม่</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e256&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e256&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e257" data-si="2" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e257&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๕๗ / SCSS 257</span>
+        <span class="cname">วัสดุศาสตร์เบื้องต้น</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e257&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e257&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e259" data-si="2" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e259&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๕๙ / SCSS 259</span>
+        <span class="cname">เคมีสิ่งแวดล้อม</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e259&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e259&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="e260" data-si="2" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e260&#39;,2,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">วทยย ๒๖๐ / SCSS 260</span>
+        <span class="cname">ธรณีวิทยาและวิทยาศาสตร์โลก</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e260&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e260&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,2)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="3" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,3)" oncontextmenu="openCtx(event,3)">
+      <div class="sem-h"><span>ปี 2 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">12 cr</span></div>
+      <div class="sem-b " data-si="3"><div class="chip " draggable="true" data-cid="s201" data-si="3" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s201&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
+        <span class="ccode">วทยย ๓๐๑ / SCSS 301</span>
+        <span class="cname">การคิดเชิงวิทยาศาสตร์</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s201&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s201&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="s202" data-si="3" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s202&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
+        <span class="ccode">วทยย ๓๐๒ / SCSS 302</span>
+        <span class="cname">การออกแบบการทดลอง</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s202&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s202&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="s203" data-si="3" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s203&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
+        <span class="ccode">วทยย ๓๐๓ / SCSS 303</span>
+        <span class="cname">คณิตศาสตร์สำหรับกระบวนการทางวิทยาศาสตร์</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s203&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s203&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="s204" data-si="3" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s204&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
+        <span class="ccode">วทยย ๓๐๔ / SCSS 304</span>
+        <span class="cname">วิทยาศาสตร์เชิงกำกับดูแล</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s204&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s204&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="lit" data-si="3" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;lit&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
+        <span class="ccode">MU Literacy</span>
+        <span class="cname">5 Literacies</span>
+        <span class="ccr">2</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;lit&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;lit&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="free" data-si="3" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;free&#39;,3,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">Free Elec</span>
+        <span class="cname">วิชาเลือกเสรี</span>
+        <span class="ccr">—</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;free&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;free&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,3)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="4" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,4)" oncontextmenu="openCtx(event,4)">
+      <div class="sem-h"><span>ปี 3 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">21 cr</span></div>
+      <div class="sem-b " data-si="4"><div class="chip " draggable="true" data-cid="pdna_h" data-si="4" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_h&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๑๐ / SCSS 310</span>
+        <span class="cname">พื้นฐานวิทยาศาสตร์สุขภาพเพื่อความยั่งยืน</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_h&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_h&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="pdna_e" data-si="4" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_e&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๒๐ / SCSS 320</span>
+        <span class="cname">พื้นฐานวิทยาศาสตร์พลังงานเพื่อความยั่งยืน</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_e&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_e&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="pdna_v" data-si="4" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_v&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๓๐ / SCSS 330</span>
+        <span class="cname">พื้นฐานวิทยาศาสตร์สิ่งแวดล้อมเพื่อความยั่งยืน</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_v&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_v&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h211" data-si="4" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h211&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๑๑ / SCSS 311</span>
+        <span class="cname">วิทยาศาสตร์สุขภาพและชีวิตเพื่อความยั่งยืน</span>
+        <span class="ccr">4</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h211&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h211&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h221" data-si="4" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h221&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๒๑ / SCSS 321</span>
+        <span class="cname">วิทยาศาสตร์พลังงานเพื่อความยั่งยืน</span>
+        <span class="ccr">4</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h221&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h221&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h231" data-si="4" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h231&#39;,4,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๓๓๑ / SCSS 331</span>
+        <span class="cname">วิทยาศาสตร์สิ่งแวดล้อมและระบบนิเวศเพื่อความยั่งยืน</span>
+        <span class="ccr">4</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h231&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h231&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,4)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="5" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,5)" oncontextmenu="openCtx(event,5)">
+      <div class="sem-h"><span>ปี 3 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
+      <div class="sem-b " data-si="5"><div class="chip " draggable="true" data-cid="h311" data-si="5" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h311&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๑๒ / SCSS 412</span>
+        <span class="cname">เทคโนโลยีสุขภาพและอาหารแห่งอนาคต</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h311&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h311&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h312" data-si="5" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h312&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๑๓ / SCSS 413</span>
+        <span class="cname">ประสบการณ์วิชาชีพด้านวิทยาศาสตร์สุขภาพ</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h312&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h312&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h321" data-si="5" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h321&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๒๒ / SCSS 422</span>
+        <span class="cname">เทคโนโลยีพลังงานแห่งอนาคต</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h321&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h321&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h322" data-si="5" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h322&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๒๓ / SCSS 423</span>
+        <span class="cname">ประสบการณ์วิชาชีพด้านพลังงาน</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h322&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h322&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h331" data-si="5" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h331&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๓๒ / SCSS 432</span>
+        <span class="cname">เทคโนโลยีสิ่งแวดล้อมแห่งอนาคต</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h331&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h331&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="h332" data-si="5" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h332&#39;,5,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
+        <span class="ccode">วทยย ๔๓๓ / SCSS 433</span>
+        <span class="cname">ประสบการณ์วิชาชีพด้านสิ่งแวดล้อม</span>
+        <span class="ccr">3</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h332&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h332&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,5)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="6" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,6)" oncontextmenu="openCtx(event,6)">
+      <div class="sem-h"><span>ปี 4 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">6 cr</span></div>
+      <div class="sem-b " data-si="6"><div class="chip " draggable="true" data-cid="elec" data-si="6" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;elec&#39;,6,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">Elective</span>
+        <span class="cname">วิชาเลือกเฉพาะด้าน</span>
+        <span class="ccr">—</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;elec&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;elec&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="cap" data-si="6" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;cap&#39;,6,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#1E844918;color:#1E8449;border:1px solid #1E844930;font-size:.5rem;padding:1px 4px">Project/Capstone</span>
+        <span class="ccode">Capstone</span>
+        <span class="cname">โครงงาน / Capstone</span>
+        <span class="ccr">6</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;cap&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;cap&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div class="chip " draggable="true" data-cid="free" data-si="6" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;free&#39;,6,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
+        <span class="ccode">Free Elec</span>
+        <span class="cname">วิชาเลือกเสรี</span>
+        <span class="ccr">—</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;free&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;free&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,6)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="7" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,7)" oncontextmenu="openCtx(event,7)">
+      <div class="sem-h"><span>ปี 4 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">6 cr</span></div>
+      <div class="sem-b " data-si="7"><div class="chip " draggable="true" data-cid="cwie" data-si="7" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;cwie&#39;,7,0)">
+        <span class="dot dot-mu"></span>
+        <span class="cat-badge" style="background:#1E844918;color:#1E8449;border:1px solid #1E844930;font-size:.5rem;padding:1px 4px">Project/Capstone</span>
+        <span class="ccode">CWIE</span>
+        <span class="cname">สหกิจศึกษา / CWIE</span>
+        <span class="ccr">6</span>
+        <span class="cedit" onclick="event.stopPropagation();openME(&#39;cwie&#39;)" title="แก้ไข">✎</span>
+        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;cwie&#39;,7)" title="ลบออกจากเทอมนี้">🗑</span>
+      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,7)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div></div>
+</div>
+
+<!-- ===== COMPARE PAGE ===== -->
+<div class="page" id="p-compare">
+  <h1>เปรียบเทียบ 4 Tracks</h1>
+  <p class="sub">ดูทุก track พร้อมกัน · วางเมาส์ค้าง 2 วินาทีเพื่อดูเส้นเชื่อมโยง · สรุปหน่วยกิต MU/TU ต่อเทอม</p>
+  <div class="cmp-grid" id="cmpGrid"></div>
+</div>
+
+<!-- ===== ACTION PAGE ===== -->
+<div class="page" id="p-action">
+  <h1>Action Plan</h1>
+  <p class="sub">สถานะรวมหลักสูตร · เปิดปี 2570</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px" id="apCards">
+  </div>
+</div>
+
+<!-- ===== TIMELINE PAGE ===== -->
+<div class="page" id="p-timeline">
+  <h1>Timeline อนุมัติหลักสูตร</h1>
+  <p class="sub">ปี 2568–2570</p>
+  <div id="tlContent"></div>
+</div>
+
+<!-- ===== TASKS PAGE ===== -->
+<div class="page" id="p-tasks">
+  <h1>กระจายงาน</h1>
+  <p class="sub">Task Board — แบ่งตามผู้รับผิดชอบ</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px" id="taskBoard"></div>
+</div>
+
+<!-- ===== REGISTRY PAGE ===== -->
+<div class="page" id="p-reg">
+  <h1>📋 ทะเบียนรายวิชา — Course Registry</h1>
+  <p class="sub">คลิกที่แถวเพื่อดูรายละเอียดครบถ้วน · กดแก้ไขเพื่ออัปเดต — ข้อมูลจะลิงก์ไปทุกส่วนของระบบ</p>
+  <div class="reg-toolbar">
+    <input class="reg-search" id="regSearch" placeholder="ค้นหารหัส ชื่อ อาจารย์..." oninput="renderReg()">
+    <button class="filter-btn on" data-rf="all" onclick="setRegFilter(&#39;all&#39;)">ทั้งหมด</button>
+    <button class="filter-btn" data-rf="MU" onclick="setRegFilter(&#39;MU&#39;)">MU</button>
+    <button class="filter-btn" data-rf="TU" onclick="setRegFilter(&#39;TU&#39;)">TU</button>
+    <button class="filter-btn" data-rf="isci" onclick="setRegFilter(&#39;isci&#39;)">I-Sci</button>
+    <button class="filter-btn" data-rf="dna_s" onclick="setRegFilter(&#39;dna_s&#39;)">DNA-S</button>
+    <button class="filter-btn" data-rf="dna_h" onclick="setRegFilter(&#39;dna_h&#39;)">DNA-H</button>
+    <button class="filter-btn" data-rf="project" onclick="setRegFilter(&#39;project&#39;)">Project</button>
+    <button class="reg-add" onclick="openRegAdd()">+ สร้างรายวิชาใหม่</button>
+    <span style="font-family:&#39;IBM Plex Mono&#39;;font-size:.65rem;color:var(--text-faint)" id="regCount"></span>
+  </div>
+  <div class="reg-table-wrap">
+    <table class="reg-table">
+      <thead><tr>
+        <th>รหัส</th><th>ชื่อรายวิชา</th><th>สถาบัน</th><th>ประเภท</th><th>cr</th><th>ผู้ประสานงาน</th><th>แก้ไขล่าสุด</th>
+      </tr></thead>
+      <tbody id="regBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DETAIL OVERLAY (click on course anywhere) -->
+<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-card">
+    <button class="dx" onclick="closeDetail()">✕</button>
+    <div class="d-header">
+      <div class="d-name" id="dName"></div>
+      <div class="d-name-en" id="dNameEn"></div>
+      <div class="d-meta">
+        <span class="d-code" id="dCode"></span>
+        <span class="d-cr" id="dCr"></span>
+        <span class="cat-badge" id="dCat"></span>
+        <span class="loc" id="dLoc" style="font-size:.58rem;font-weight:600;padding:2px 7px;border-radius:3px"></span>
+      </div>
+    </div>
+    <div class="d-section"><div class="d-label">คำอธิบายรายวิชา (ภาษาไทย)</div><div class="d-text" id="dTh"></div></div>
+    <div class="d-section"><div class="d-label">Course Description (English)</div><div class="d-text" id="dEn"></div></div>
+    <div class="d-prof-box" id="dProfBox">
+      <div class="d-label" style="margin-bottom:4px">ผู้ประสานงานรายวิชา</div>
+      <div class="d-prof-name" id="dProf"></div>
+      <div class="d-prof-email" id="dEmail"></div>
+    </div>
+    <div class="d-footer">
+      <div class="d-ts" id="dTs"></div>
+      <div class="d-actions">
+        <button class="btn bs" onclick="closeDetail();go(&#39;reg&#39;);setTimeout(()=&gt;document.getElementById(&#39;regSearch&#39;).value=detailCid?DB[detailCid]?.c?.split(&#39;/&#39;)[0]?.trim():&#39;&#39;,100);setTimeout(renderReg,150)">📋 ไปทะเบียน</button>
+        <button class="btn bp" onclick="closeDetail();openME(detailCid)">✎ แก้ไข</button>
+        <button class="btn" id="dDeleteBtn" style="display:none;background:#C0392B;color:#fff;border:none;font-weight:600;padding:8px 18px;font-size:.75rem;border-radius:6px;transition:all .15s" onmouseover="this.style.background=&#39;#A93226&#39;" onmouseout="this.style.background=&#39;#C0392B&#39;" onclick="doDeleteFromOverlay(this)">🗑 ลบออกจากแผน</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAVE HTML MODAL -->
+<div class="save-overlay" id="saveOverlay" onclick="if(event.target===this)closeSaveHTML()">
+  <div class="detail-card" style="max-width:440px">
+    <button class="dx" onclick="closeSaveHTML()">✕</button>
+    <h3 style="font-size:.95rem;font-weight:600;margin-bottom:12px">💾 Save as HTML</h3>
+    <p style="font-size:.72rem;color:var(--text-dim);margin-bottom:8px">บันทึกไฟล์ HTML พร้อมข้อมูลทั้งหมดที่แก้ไขแล้ว — จะเปิดหน้าต่างให้เลือกที่บันทึก</p>
+    <div class="fl">ชื่อไฟล์</div>
+    <input class="ei" id="saveFilename" value="Sustainability_Planner" style="margin-bottom:12px">
+    <div class="br">
+      <button class="btn bs" onclick="closeSaveHTML()">ยกเลิก</button>
+      <button class="btn bp" onclick="doSaveHTML()">💾 บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- COURSE EDIT MODAL -->
+<div class="mo" id="modal" onclick="if(event.target===this)closeM()">
+  <div class="md" style="position:relative">
+    <button class="mx" onclick="closeM()">✕</button>
+    <div id="vMode">
+      <h3 id="mN"></h3>
+      <div class="mc" id="mC"></div>
+      <div class="mcr" id="mCr"></div>
+      <div class="fl">คำอธิบาย (ไทย)</div><div class="ft" id="mTh"></div>
+      <div class="fl">Description (EN)</div><div class="ft" id="mEn"></div>
+      <div class="fl">สถานที่เรียน</div><div class="ft" id="mLoc"></div>
+      <div class="br"><button class="btn bs" onclick="editM()">✎ แก้ไข</button><button class="btn bs" onclick="closeM()">ปิด</button></div>
+    </div>
+    <div id="eMode" style="display:none">
+      <div class="fl">ชื่อรายวิชา</div><input class="ei" id="eN">
+      <div class="fl">รหัสวิชา</div><input class="ei" id="eC" placeholder="วทวค ๒๐๑ / SCSS 201">
+      <div class="fl">หน่วยกิต</div><input class="ei" id="eCr">
+      <div class="fl">ประเภทวิชา (MU)</div>
+      <select class="ei" id="eCat" style="cursor:pointer"><option value="isci">I-Sci (Intellectual Science)</option><option value="mu_req">บังคับ MU</option><option value="elective">เลือก</option><option value="dna_h">DNA-H</option><option value="dna_s">DNA-S</option><option value="seminar">สัมมนา</option><option value="project">Project / Capstone</option><option value="tu">TU</option></select>
+      <div class="fl">คำอธิบาย (TH)</div><textarea class="ea" id="eTh" rows="3"></textarea>
+      <div class="fl">Description (EN)</div><textarea class="ea" id="eEn" rows="3"></textarea>
+      <div style="font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);margin:12px 0 6px;padding-top:10px;border-top:1px dashed var(--border)">ผู้ประสานงานรายวิชา</div>
+      <div class="fl">ตำแหน่งทางวิชาการ ชื่อ นามสกุล</div><input class="ei" id="eProf" placeholder="เช่น ผศ. ขวัญ อารยะธนิตกุล">
+      <div class="fl">อีเมล</div><input class="ei" id="eEmail" placeholder="name@mahidol.ac.th" type="email">
+      <div class="br"><button class="btn bs" onclick="cancelE()">ยกเลิก</button><button class="btn bp" onclick="saveE()">💾 บันทึก</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="confirmPop" class="confirm-pop" style="display:none"></div>
+<div id="undoContainer"></div>
+<div class="ctx-menu" id="ctxMenu" style="display:none"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
