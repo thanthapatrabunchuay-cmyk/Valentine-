@@ -1,562 +1,1529 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)file:///C:/Users/Winz/Downloads/Planner_13.html -->
-<html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>วท.บ. เคมี — ร่างหลักสูตรใหม่ · MU Chemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT VARS
+═══════════════════════════════════════════ */
+:root {
+  --mu-navy:    #1A3A5C;
+  --mu-blue:    #2B5B8A;
+  --mu-mid:     #4A7DAA;
+  --mu-light:   #7AAECB;
+  --mu-pale:    #D6E8F4;
+  --mu-cream:   #F0F6FB;
+  --mu-gold:    #C8A84B;
+  --mu-gold-lt: #F5E9C5;
+  --mu-red:     #A63020;
+  --mu-green:   #2E7D5E;
+  --mu-orange:  #C05820;
+  --mu-orange-lt:#FAE5D8;
+  --mu-purple:  #5B4A8A;
+  --bg:         #F2F6FB;
+  --surface:    #FFFFFF;
+  --border:     #C4D8EE;
+  --border-lt:  #E0EDF8;
+  --text:       #1A2A3A;
+  --text-mid:   #3A5570;
+  --text-faint: #7A99B8;
+  --shadow:     rgba(26,58,92,.08);
+  --shadow-md:  rgba(26,58,92,.15);
+  --shadow-lg:  rgba(26,58,92,.24);
+  --y1:#1A3A5C; --y1-lt:#EBF3FB; --y1-acc:#4A7DAA; --y1-mid:#2B5B8A;
+  --y2:#14593A; --y2-lt:#E3F4EC; --y2-acc:#2E7D5E; --y2-mid:#1E6B4A;
+  --y3:#3C1278; --y3-lt:#EDE4F8; --y3-acc:#7B52AB; --y3-mid:#5B3A8E;
+  --y4:#6B3B00; --y4-lt:#FEF2DE; --y4-acc:#C8A84B; --y4-mid:#9A6820;
+  --nav-h: 56px;
+  --bot-h: 62px;
+}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sustainability Curriculum Planner v15 — 4 Tracks + Elective Sciences</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh;
+  padding-bottom: var(--bot-h);
+  padding-bottom: calc(var(--bot-h) + env(safe-area-inset-bottom));
+}
+
+/* ═══════════════════════════════════════════
+   TOP NAV
+═══════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--mu-navy);
+  border-bottom: 3px solid var(--mu-gold);
+  box-shadow: 0 2px 14px var(--shadow-md);
+}
+.nav-inner {
+  max-width: 1500px; margin: 0 auto;
+  display: flex; align-items: center; gap: 5px;
+  padding: 0 16px; height: var(--nav-h);
+}
+.brand {
+  font-weight: 700; font-size: .95rem; color: #fff;
+  letter-spacing: .02em; flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.brand span { color: var(--mu-gold); }
+
+/* Desktop page buttons */
+.nav-pages {
+  display: flex; gap: 4px; flex-wrap: nowrap;
+  overflow-x: auto; flex: 1;
+  scrollbar-width: none;
+}
+.nav-pages::-webkit-scrollbar { display: none; }
+.nav-pages button {
+  background: transparent; border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.72); border-radius: 6px;
+  padding: 6px 11px; font-family: inherit; font-size: .76rem; font-weight: 500;
+  cursor: pointer; transition: .15s; white-space: nowrap; flex-shrink: 0;
+}
+.nav-pages button:hover, .nav-pages button.on {
+  background: var(--mu-blue); border-color: var(--mu-light); color: #fff;
+}
+
+.nav-actions { display: flex; gap: 5px; align-items: center; margin-left: 6px; flex-shrink: 0; }
+.nav-actions button {
+  border: none; border-radius: 7px; padding: 7px 13px;
+  font-family: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; transition: .15s;
+}
+#saveBtn {
+  background: var(--mu-gold); color: var(--mu-navy);
+  position: relative;
+}
+#saveBtn:active { background: #b8943a; }
+#dirtyDot { display:none; position:absolute; top:-3px; right:-3px; width:9px; height:9px; border-radius:50%; background:#e74c3c; border:2px solid var(--mu-navy); }
+
+#adminBtn {
+  background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+  border: 1px solid rgba(255,255,255,.2);
+  font-size: .75rem;
+}
+#adminBtn.active { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+
+/* ── ADMIN BANNER ── */
+.admin-banner {
+  display: none; background: linear-gradient(135deg,#c0392b,#e74c3c);
+  color:#fff; text-align:center; padding:8px 16px;
+  font-size:.8rem; font-weight:600; letter-spacing:.02em;
+  position: sticky; top: var(--nav-h); z-index: 190;
+}
+.admin-banner.on { display: block; }
+
+/* ═══════════════════════════════════════════
+   PAGES
+═══════════════════════════════════════════ */
+.page { display: none; max-width: 1500px; margin: 0 auto; padding: 24px 18px 32px; }
+.page.on { display: block; }
+
+.page-hd { margin-bottom: 20px; }
+.page-hd h1 { font-size: 1.4rem; font-weight: 700; color: var(--mu-navy); line-height: 1.3; }
+.page-hd p  { font-size: .88rem; color: var(--text-mid); margin-top: 5px; line-height: 1.6; }
+.dept-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--mu-navy); color: var(--mu-gold);
+  border-radius: 7px; padding: 5px 12px;
+  font-size: .75rem; font-weight: 600; letter-spacing: .04em;
+  margin-bottom: 10px;
+}
+
+/* ── STATS ── */
+.stats {
+  display: flex; gap: 10px;
+  overflow-x: auto; padding-bottom: 4px; margin-bottom: 18px;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.stats::-webkit-scrollbar { display: none; }
+.stat {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 11px 16px; flex-shrink: 0;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.sv { font-size: 1.6rem; font-weight: 700; color: var(--mu-navy); font-family: 'IBM Plex Mono', monospace; }
+.sl { font-size: .7rem; color: var(--text-faint); margin-top: 1px; white-space: nowrap; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; font-size: .8rem;
+}
+.legend-item { display: flex; align-items: center; gap: 4px; color: var(--text-mid); }
+
+/* ═══════════════════════════════════════════
+   YEAR BLOCKS
+═══════════════════════════════════════════ */
+.timeline { display: flex; flex-direction: column; gap: 20px; }
+
+.year-block {
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 3px 14px var(--shadow);
+  border: 1.5px solid var(--border);
+}
+.year-block[data-year="1"] { border-color: var(--y1-acc); }
+.year-block[data-year="2"] { border-color: var(--y2-acc); }
+.year-block[data-year="3"] { border-color: var(--y3-acc); }
+.year-block[data-year="4"] { border-color: var(--y4-acc); }
+
+.year-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px; color: #fff;
+  font-weight: 700; font-size: 1rem; letter-spacing: .02em;
+}
+.year-block[data-year="1"] .year-header { background: linear-gradient(135deg,var(--y1),var(--y1-mid)); border-bottom: 3px solid var(--y1-acc); }
+.year-block[data-year="2"] .year-header { background: linear-gradient(135deg,var(--y2),var(--y2-mid)); border-bottom: 3px solid var(--y2-acc); }
+.year-block[data-year="3"] .year-header { background: linear-gradient(135deg,var(--y3),var(--y3-mid)); border-bottom: 3px solid var(--y3-acc); }
+.year-block[data-year="4"] .year-header { background: linear-gradient(135deg,var(--y4),var(--y4-mid)); border-bottom: 3px solid var(--y4-acc); }
+
+.year-cr {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace; font-size: .85rem; font-weight: 600;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25);
+  padding: 3px 10px; border-radius: 6px; white-space: nowrap;
+}
+
+/* Desktop: 2 columns */
+.sem-row { display: grid; grid-template-columns: 1fr 1fr; }
+
+.year-block[data-year="1"] .sem { background: var(--y1-lt); }
+.year-block[data-year="2"] .sem { background: var(--y2-lt); }
+.year-block[data-year="3"] .sem { background: var(--y3-lt); }
+.year-block[data-year="4"] .sem { background: var(--y4-lt); }
+
+.sem {
+  border-right: 1px solid var(--border);
+  transition: background .2s, box-shadow .2s;
+  min-width: 0;
+}
+.sem:last-child { border-right: none; }
+.sem.drag-over {
+  filter: brightness(.96);
+  box-shadow: inset 0 0 0 3px rgba(43,91,138,.45);
+}
+
+.sem-h {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.55);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  font-weight: 600; font-size: .88rem; color: var(--text);
+}
+.sem-h .cr {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace; font-size: .8rem; font-weight: 700;
+  background: rgba(0,0,0,.07); padding: 2px 9px; border-radius: 5px; color: var(--text-mid);
+}
+.sem-b { padding: 8px; display: flex; flex-direction: column; gap: 5px; min-height: 60px; }
+
+/* ═══════════════════════════════════════════
+   CHIP
+═══════════════════════════════════════════ */
+.chip {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--chip-accent, #999);
+  border-radius: 8px;
+  padding: 7px 10px 6px;
+  cursor: grab;
+  transition: box-shadow .15s, transform .12s;
+  position: relative; user-select: none;
+  touch-action: none;
+}
+.chip:hover { box-shadow: 0 3px 10px var(--shadow-md); transform: translateY(-1px); background: #fff; }
+.chip.dragging { opacity: .3; transform: rotate(1.5deg) scale(.97); }
+.chip.touch-dragging { opacity: .25; }
+.chip.chip-locked { cursor: default; }
+.chip.chip-locked:hover { transform: none; box-shadow: none; }
+
+/* Row 1: code (left) | badge + cr (right) */
+.chip-row1 {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 4px;
+}
+.ccode {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .88rem; font-weight: 700; color: var(--mu-navy);
+  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  min-width: 0;
+}
+/* Badge + cr grouped right */
+.chip-right {
+  display: flex; align-items: center; gap: 5px; flex-shrink: 0;
+}
+.cat-badge {
+  font-size: .6rem; font-weight: 700; letter-spacing: .03em;
+  padding: 1px 6px; border-radius: 4px; border: 1.5px solid; white-space: nowrap;
+}
+.ccr {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .88rem; font-weight: 700; color: var(--mu-navy);
+  background: var(--mu-pale); padding: 1px 7px; border-radius: 4px; white-space: nowrap;
+}
+/* Row 2: name + inline indicators */
+.chip-row2 {
+  display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.cname {
+  font-size: .84rem; font-weight: 500; color: var(--text); line-height: 1.35;
+  flex: 1; min-width: 0;
+}
+.lock-indicator { font-size: .72rem; opacity: .85; flex-shrink: 0; }
+.prereq-indicator {
+  font-size: .62rem; color: var(--mu-orange);
+  background: var(--mu-orange-lt); border: 1px solid rgba(192,88,32,.22);
+  padding: 0px 5px; border-radius: 3px; font-weight: 600; white-space: nowrap; flex-shrink: 0;
+}
+
+.chip-actions {
+  display: flex; gap: 3px; align-items: center;
+  margin-top: 5px; justify-content: flex-end;
+}
+.chip-btn {
+  background: var(--border-lt); border: 1px solid var(--border);
+  font-size: .72rem; cursor: pointer;
+  padding: 3px 7px; border-radius: 4px;
+  transition: .12s; color: var(--text-mid);
+  font-family: inherit; font-weight: 500;
+  min-height: 24px; display: flex; align-items: center;
+}
+.chip-btn:hover, .chip-btn:active { opacity: 1; background: #fff; }
+.chip-btn.lock-btn.locked { background: #ffeeee; border-color: #e74c3c; color: #c0392b; }
+.chip-btn.del-btn { color: var(--mu-red); border-color: rgba(166,48,32,.25); background: rgba(166,48,32,.06); }
+.chip-btn.edit-btn { color: var(--mu-blue); border-color: rgba(43,91,138,.25); background: rgba(43,91,138,.06); }
+.chip-btn.move-btn { color: var(--mu-purple); border-color: rgba(91,74,138,.25); background: rgba(91,74,138,.06); }
+
+.add-btn {
+  background: rgba(255,255,255,.65); border: 1.5px dashed var(--border);
+  border-radius: 7px; padding: 6px; font-family: inherit; font-size: .78rem;
+  color: var(--text-faint); cursor: pointer; width: 100%;
+  transition: .15s; margin-top: 1px; min-height: 32px;
+}
+.add-btn:hover, .add-btn:active { border-color: var(--mu-blue); color: var(--mu-navy); background: rgba(255,255,255,.95); }
+
+/* ═══════════════════════════════════════════
+   MODALS
+═══════════════════════════════════════════ */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.45); z-index: 300;
+  align-items: center; justify-content: center;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: #fff; border-radius: 16px; padding: 26px;
+  width: min(520px, 96vw);
+  box-shadow: 0 14px 50px var(--shadow-lg);
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+}
+.modal-drag-handle { display: none; }
+.modal h2 { font-size: 1.05rem; font-weight: 700; color: var(--mu-navy); margin-bottom: 14px; padding-right: 24px; }
+.modal-close-x {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--border-lt); border: none; border-radius: 50%;
+  width: 28px; height: 28px; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-mid); transition: .15s;
+}
+.modal-close-x:hover { background: var(--border); }
+
+.modal label { display: block; font-size: .78rem; font-weight: 600; color: var(--text-mid); margin-bottom: 4px; margin-top: 12px; }
+.modal input, .modal textarea, .modal select {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 12px; font-family: inherit; font-size: .92rem;
+  background: var(--bg); color: var(--text); transition: .15s;
+}
+.modal input:focus, .modal textarea:focus, .modal select:focus {
+  outline: none; border-color: var(--mu-blue); background: #fff;
+  box-shadow: 0 0 0 3px rgba(43,91,138,.1);
+}
+.modal textarea { resize: vertical; min-height: 75px; }
+.modal-btns { display: flex; gap: 8px; margin-top: 18px; }
+.modal-btns button {
+  flex: 1; border: none; border-radius: 9px; padding: 12px 20px;
+  font-family: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; transition: .15s;
+  min-height: 46px;
+}
+.btn-primary { background: var(--mu-navy); color: #fff; }
+.btn-primary:hover, .btn-primary:active { background: var(--mu-blue); }
+.btn-cancel { background: var(--border-lt); color: var(--text-mid); flex: 0 0 auto; min-width: 80px; }
+
+/* Admin section */
+.admin-section {
+  margin-top: 14px; padding: 14px;
+  background: #FFF5F5; border: 1.5px solid #FFCDD2; border-radius: 10px;
+}
+.admin-section h3 { font-size: .8rem; font-weight: 700; color: #c0392b; margin-bottom: 10px; }
+.admin-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.admin-row label { margin: 0; font-size: .84rem; flex: 1; }
+.toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: absolute; inset: 0; background: #ccc; border-radius: 24px;
+  cursor: pointer; transition: .2s;
+}
+.toggle-switch input:checked + .toggle-track { background: #e74c3c; }
+.toggle-track::before {
+  content:''; position:absolute; top:3px; left:3px;
+  width:18px; height:18px; background:#fff; border-radius:50%; transition:.2s;
+}
+.toggle-switch input:checked + .toggle-track::before { transform: translateX(20px); }
+.prereq-tags {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px;
+  min-height: 36px; padding: 6px;
+  background: #fff; border: 1.5px solid var(--border); border-radius: 7px;
+}
+.prereq-tag {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--mu-orange-lt); color: var(--mu-orange);
+  border: 1px solid rgba(192,88,32,.3); padding: 3px 8px;
+  border-radius: 20px; font-size: .75rem; font-weight: 600;
+}
+.prereq-tag button { background: none; border: none; cursor: pointer; color: inherit; font-size: 1rem; line-height: 1; padding: 0; }
+.prereq-search {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 7px;
+  padding: 8px 11px; font-family: inherit; font-size: .86rem;
+  background: var(--bg); color: var(--text); margin-top: 6px;
+}
+.prereq-search:focus { outline: none; border-color: var(--mu-orange); background: #fff; }
+.prereq-results {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 7px;
+  max-height: 150px; overflow-y: auto; margin-top: 4px; display: none;
+}
+.prereq-result-item { padding: 9px 12px; font-size: .84rem; cursor: pointer; transition: .1s; }
+.prereq-result-item:hover, .prereq-result-item:active { background: var(--mu-cream); }
+
+/* Move to semester modal */
+#moveModal .sem-option {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: var(--bg);
+  margin-bottom: 8px; cursor: pointer; transition: .15s; font-size: .9rem;
+}
+#moveModal .sem-option:hover, #moveModal .sem-option:active { background: var(--mu-cream); border-color: var(--mu-blue); }
+#moveModal .sem-option .opt-icon { font-size: 1.2rem; }
+#moveModal .sem-option .opt-cr { margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: .8rem; color: var(--text-faint); }
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: calc(var(--bot-h) + 12px);
+  left: 50%; transform: translateX(-50%) translateY(16px);
+  background: rgba(26,42,58,.94); color: #fff;
+  padding: 11px 20px; border-radius: 10px;
+  font-size: .86rem; font-weight: 500;
+  box-shadow: 0 6px 24px rgba(0,0,0,.3);
+  z-index: 500; opacity: 0; transition: opacity .22s, transform .22s;
+  white-space: nowrap; pointer-events: none; max-width: 90vw;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.warn { background: rgba(166,48,32,.94); }
+.toast.ok   { background: rgba(46,125,94,.94); }
+
+/* Touch drag ghost */
+#touchGhost {
+  position: fixed; z-index: 9999; pointer-events: none;
+  opacity: .88; border-radius: 9px; border-left-width: 4px;
+  box-shadow: 0 10px 32px rgba(0,0,0,.32);
+  transform: rotate(2deg) scale(1.05);
+  display: none;
+}
+
+/* ═══════════════════════════════════════════
+   BOTTOM NAV (mobile)
+═══════════════════════════════════════════ */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--mu-navy); border-top: 2px solid var(--mu-gold);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2px 12px rgba(0,0,0,.18);
+}
+.bn-inner { display: flex; height: var(--bot-h); }
+.bn-btn {
+  flex: 1; background: none; border: none;
+  color: rgba(255,255,255,.55);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; font-family: inherit; cursor: pointer; transition: .15s;
+  padding: 0; border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.bn-btn.on { color: var(--mu-gold); }
+.bn-btn .bn-icon { font-size: 1.3rem; line-height: 1; }
+.bn-btn .bn-label { font-size: .6rem; font-weight: 600; letter-spacing: .02em; }
+
+/* ═══════════════════════════════════════════
+   COMPARISON, PLO, TRACKS, ACTION, REGISTRY
+═══════════════════════════════════════════ */
+.cmp-table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.cmp-table th { background: var(--mu-navy); color: #fff; padding: 9px 12px; text-align: left; font-weight: 600; }
+.cmp-table td { border-bottom: 1px solid var(--border-lt); padding: 8px 12px; vertical-align: top; }
+.cmp-table tr:hover td { background: var(--mu-cream); }
+.delta-plus  { color: var(--mu-green); font-weight: 700; }
+.delta-minus { color: var(--mu-red); font-weight: 700; }
+.delta-zero  { color: var(--text-faint); }
+
+.plo-grid { display: flex; flex-direction: column; gap: 12px; }
+.plo-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px var(--shadow); }
+.plo-hd { background: linear-gradient(90deg,var(--mu-navy),var(--mu-blue)); color: #fff; padding: 10px 14px; font-size: .88rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.plo-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+.subplo { font-size: .82rem; color: var(--text-mid); padding: 5px 0 5px 14px; border-left: 3px solid var(--mu-pale); line-height: 1.5; }
+.plo-edit-btn { margin-left: auto; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.3); color: #fff; border-radius: 6px; padding: 3px 10px; font-size: .7rem; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+
+.action-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 14px; }
+.action-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; box-shadow: 0 2px 6px var(--shadow); }
+.action-card h3 { font-size: .88rem; font-weight: 700; color: var(--mu-navy); margin-bottom: 10px; }
+.action-item { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 8px; font-size: .84rem; line-height: 1.5; }
+.action-item input[type=checkbox] { margin-top: 2px; accent-color: var(--mu-navy); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+
+.reg-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.reg-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.reg-table th { background: var(--mu-navy); color: #fff; padding: 9px 10px; text-align: left; white-space: nowrap; }
+.reg-table td { border-bottom: 1px solid var(--border-lt); padding: 6px 10px; vertical-align: middle; }
+.reg-table tr:hover td { background: var(--mu-cream); }
+.reg-table input { border: 1px solid var(--border); border-radius: 5px; padding: 4px 7px; font-size: .8rem; width: 100%; font-family: inherit; background: #fff; min-width: 80px; }
+.reg-table input:focus { outline: none; border-color: var(--mu-blue); }
+.group-row td { background: var(--mu-pale); font-weight: 700; color: var(--mu-navy); font-size: .84rem; }
+.reg-lock-btn { background: none; border: 1px solid var(--border); border-radius: 5px; padding: 4px 9px; cursor: pointer; font-size: .78rem; white-space: nowrap; transition: .15s; }
+.reg-lock-btn.locked { background: #ffeeee; border-color: #e74c3c; color: #c0392b; font-weight: 600; }
+
+#tracksGrid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 14px; }
+.track-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px var(--shadow); }
+.track-hd { color: #fff; padding: 12px 14px; font-size: .88rem; font-weight: 700; line-height: 1.35; }
+.track-b { padding: 10px 14px; }
+.track-course { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid var(--border-lt); font-size: .81rem; color: var(--text-mid); }
+.track-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--mu-light); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE  ≤ 700px
+═══════════════════════════════════════════ */
+@media (max-width: 700px) {
+  :root { --nav-h: 52px; }
+
+  /* Nav: hide page buttons, show only brand+actions */
+  .nav-pages { display: none; }
+  .brand { font-size: .88rem; }
+
+  /* Show bottom nav */
+  .bottom-nav { display: block; }
+  body { padding-bottom: calc(var(--bot-h) + env(safe-area-inset-bottom)); }
+
+  /* Pages */
+  .page { padding: 14px 10px 24px; }
+  .page-hd h1 { font-size: 1.15rem; }
+  .page-hd p  { font-size: .82rem; }
+  .dept-badge { font-size: .7rem; padding: 4px 10px; }
+
+  /* Stats: no-wrap scroll */
+  .stats { gap: 8px; }
+  .stat { padding: 9px 14px; }
+  .sv { font-size: 1.4rem; }
+
+  /* Legend: collapse to 2 rows */
+  .legend { gap: 8px; font-size: .75rem; }
+
+  /* Year blocks: stack semesters */
+  .sem-row { grid-template-columns: 1fr; }
+  .sem { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .sem:last-child { border-bottom: none; }
+
+  .year-header { padding: 10px 14px; font-size: .92rem; }
+  .sem-h { padding: 9px 12px; font-size: .84rem; }
+  .sem-b { padding: 8px; gap: 6px; }
+
+  /* Chip: bigger touch targets */
+  .chip { padding: 8px 10px 7px; }
+  .ccode { font-size: .84rem; }
+  .ccr { font-size: .84rem; }
+  .cat-badge { font-size: .58rem; }
+  .cname { font-size: .82rem; }
+  .chip-actions { gap: 4px; margin-top: 6px; }
+  .chip-btn { padding: 5px 9px; font-size: .73rem; min-height: 28px; }
+
+  /* Modals: bottom sheet style */
+  .overlay { align-items: flex-end; }
+  .modal {
+    border-radius: 20px 20px 0 0;
+    width: 100%; max-width: 100%;
+    padding: 10px 18px 32px;
+    max-height: 88vh;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom));
+  }
+  .modal-drag-handle {
+    display: block; width: 36px; height: 4px;
+    background: var(--border); border-radius: 2px;
+    margin: 0 auto 14px; cursor: pointer;
+  }
+  .modal h2 { font-size: 1rem; }
+  .modal input, .modal textarea, .modal select { font-size: .9rem; padding: 10px 12px; }
+  .modal-btns button { min-height: 48px; font-size: .9rem; }
+
+  /* Toast: above bottom nav */
+  .toast { bottom: calc(var(--bot-h) + env(safe-area-inset-bottom) + 10px); font-size: .84rem; }
+
+  /* Tables */
+  .cmp-table { font-size: .8rem; }
+  .cmp-table th, .cmp-table td { padding: 7px 9px; }
+  .reg-table { font-size: .78rem; }
+
+  /* PLO */
+  .plo-hd { font-size: .82rem; padding: 9px 12px; }
+  .subplo { font-size: .79rem; }
+
+  /* Action */
+  .action-grid { grid-template-columns: 1fr; gap: 10px; }
+  .action-card { padding: 12px; }
+
+  /* Tracks */
+  #tracksGrid { grid-template-columns: 1fr; gap: 10px; }
+}
+
+@media (max-width: 400px) {
+  .ccode { font-size: .8rem; }
+  .year-header { font-size: .86rem; }
+  .chip-btn { padding: 5px 8px; font-size: .72rem; }
+}
+</style>
 </head>
 <body>
 
-<nav><div class="nav-inner">
-  <span class="brand">SCCH71 Planner</span>
-  <button class="on" id="n-plan" onclick="go(&#39;plan&#39;)">4 Tracks Planner</button>
-  <button id="n-compare" onclick="go(&#39;compare&#39;)">เปรียบเทียบ 4 Tracks</button>
-  <button id="n-action" onclick="go(&#39;action&#39;)">Action Plan</button>
-  <button id="n-timeline" onclick="go(&#39;timeline&#39;)">Timeline</button>
-  <button id="n-tasks" onclick="go(&#39;tasks&#39;)">กระจายงาน</button>
-  <button id="n-reg" onclick="go(&#39;reg&#39;)">📋 ทะเบียนรายวิชา</button>
-  <button id="saveBtn" style="background:var(--orange);color:#fff;font-weight:600;border-radius:5px;padding:5px 14px;position:relative" onclick="saveHTML()">💾 Save<span id="dirtyDot" style="display:none;position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#C0392B;border:1.5px solid #fff"></span></button>
-</div></nav>
+<!-- Admin banner -->
+<div class="admin-banner" id="adminBanner">🔐 Admin Mode — ล็อควิชาและกำหนด Prerequisite</div>
 
-<!-- ===== PLAN PAGE ===== -->
+<!-- TOP NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="brand">⬡ SCCH · <span>MU Chemistry</span></span>
+
+    <!-- Desktop page buttons -->
+    <div class="nav-pages">
+      <button class="on" id="n-plan"    onclick="go('plan')">📅 แผนการศึกษา</button>
+      <button id="n-compare" onclick="go('compare')">📊 เปรียบเทียบ</button>
+      <button id="n-plo"     onclick="go('plo')">🎯 PLO</button>
+      <button id="n-tracks"  onclick="go('tracks')">🛤 Tracks</button>
+      <button id="n-action"  onclick="go('action')">✅ Action</button>
+      <button id="n-reg"     onclick="go('reg')">📋 ทะเบียน</button>
+    </div>
+
+    <div class="nav-actions">
+      <button id="adminBtn" onclick="toggleAdmin()">🔐 Admin</button>
+      <button id="saveBtn"  onclick="saveHTML()">💾 บันทึก<span id="dirtyDot"></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- Touch drag ghost -->
+<div id="touchGhost"></div>
+
+<!-- ═══════ PLAN PAGE ═══════ -->
 <div class="page on" id="p-plan">
-  <h1>Study Tracks — ลาก &amp; วาง จัดรายวิชา</h1>
-  <p class="sub">กดค้างที่รายวิชาแล้วลากไปวางในเทอมที่ต้องการ · คลิกเพื่อดูคำอธิบาย · คลิก ✎ เพื่อแก้ไขรหัส/คำอธิบาย</p>
-  <div class="tabs" id="tabs"><button class="tab on" onclick="pickTrack(0)">เข้า MU → จบ MU <span class="b bmu">MU</span></button><button class="tab " onclick="pickTrack(1)">เข้า MU → จบ TU <span class="b btu">MU→TU</span></button><button class="tab " onclick="pickTrack(2)">เข้า TU → จบ MU <span class="b bmu">TU→MU</span></button><button class="tab " onclick="pickTrack(3)">เข้า TU → จบ TU <span class="b btu">TU</span></button></div>
-  <div class="info" id="trackInfo"><strong>เข้า MU → จบ MU</strong> — แผน 1 Single Degree วท.บ. ≥128 cr · เรียน MU ตลอด</div>
+  <div class="page-hd">
+    <div class="dept-badge">🔬 ภาควิชาเคมี คณะวิทยาศาสตร์ มหาวิทยาลัยมหิดล</div>
+    <h1>ร่างแผนการศึกษา · วท.บ. (เคมี)</h1>
+    <p>ลากวางรายวิชาระหว่างเทอม · แตะ ✎ เพื่อแก้ไข · แตะ ⇄ เพื่อย้ายเทอม (มือถือ)</p>
+  </div>
+
   <div class="stats" id="trackStats">
     <div class="stat"><div class="sv">127</div><div class="sl">หน่วยกิตรวม</div></div>
     <div class="stat"><div class="sv">24</div><div class="sl">ศึกษาทั่วไป</div></div>
     <div class="stat"><div class="sv">97</div><div class="sl">รายวิชาเฉพาะ</div></div>
     <div class="stat"><div class="sv">6</div><div class="sl">เลือกเสรี</div></div>
-    <div class="stat"><div class="sv">46</div><div class="sl">รายวิชา</div></div>
+    <div class="stat"><div class="sv">8</div><div class="sl">ภาคการศึกษา</div></div>
   </div>
-  <div class="sgrid" id="semGrid"><div class="sem" data-si="0" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,0)" oncontextmenu="openCtx(event,0)">
-      <div class="sem-h"><span>ปี 1 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">25 cr</span></div>
-      <div class="sem-b " data-si="0"><div class="chip " draggable="true" data-cid="muge" data-si="0" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;muge&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
-        <span class="ccode">มมศท ๑๐๐ / MUGE 100</span>
-        <span class="cname">การศึกษาทั่วไปเพื่อการพัฒนามนุษย์</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;muge&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;muge&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="eng" data-si="0" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;eng&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
-        <span class="ccode">English</span>
-        <span class="cname">ภาษาอังกฤษ</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;eng&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;eng&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="thai" data-si="0" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;thai&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
-        <span class="ccode">ศศลท ๑๑๑ / LATP 111</span>
-        <span class="cname">ภาษาไทยเพื่อการสื่อสาร</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;thai&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;thai&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="ib" data-si="0" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ib&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๑ / SCSS 101</span>
-        <span class="cname">ชีววิทยาปัญญาบูรณาการ</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ib&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ib&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="im" data-si="0" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;im&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๒ / SCSS 102</span>
-        <span class="cname">คณิตศาสตร์ปัญญาบูรณาการ</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;im&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;im&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="ip" data-si="0" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ip&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๓ / SCSS 103</span>
-        <span class="cname">ฟิสิกส์ปัญญาบูรณาการ</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ip&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ip&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="ic" data-si="0" data-ci="6" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;ic&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๔ / SCSS 104</span>
-        <span class="cname">เคมีปัญญาบูรณาการ</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;ic&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;ic&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="blb" data-si="0" data-ci="7" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;blb&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๕ / SCSS 105</span>
-        <span class="cname">ปฏิบัติการชีววิทยาปัญญาบูรณาการ</span>
-        <span class="ccr">1</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;blb&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;blb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="mlb" data-si="0" data-ci="8" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;mlb&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๖ / SCSS 106</span>
-        <span class="cname">ปฏิบัติการคณิตศาสตร์ปัญญาบูรณาการ</span>
-        <span class="ccr">1</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;mlb&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;mlb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="plb" data-si="0" data-ci="9" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;plb&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๗ / SCSS 107</span>
-        <span class="cname">ปฏิบัติการฟิสิกส์ปัญญาบูรณาการ</span>
-        <span class="ccr">1</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;plb&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;plb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="clb" data-si="0" data-ci="10" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;clb&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#6889AD18;color:#6889AD;border:1px solid #6889AD30;font-size:.5rem;padding:1px 4px">I-Sci</span>
-        <span class="ccode">วทยย ๑๐๘ / SCSS 108</span>
-        <span class="cname">ปฏิบัติการเคมีปัญญาบูรณาการ</span>
-        <span class="ccr">1</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;clb&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;clb&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="lit" data-si="0" data-ci="11" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;lit&#39;,0,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
-        <span class="ccode">MU Literacy</span>
-        <span class="cname">5 Literacies</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;lit&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;lit&#39;,0)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,0)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="1" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,1)" oncontextmenu="openCtx(event,1)">
-      <div class="sem-h"><span>ปี 1 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
-      <div class="sem-b " data-si="1"><div class="chip " draggable="true" data-cid="e151" data-si="1" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e151&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๑๕๑ / SCSS 151</span>
-        <span class="cname">สรีรวิทยามนุษย์เบื้องต้น</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e151&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e151&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e152" data-si="1" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e152&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๑๕๒ / SCSS 152</span>
-        <span class="cname">ชีวเคมี</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e152&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e152&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e153" data-si="1" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e153&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๑๕๓ / SCSS 153</span>
-        <span class="cname">จุลชีววิทยาทั่วไป</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e153&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e153&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e158" data-si="1" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e158&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๑๕๘ / SCSS 158</span>
-        <span class="cname">นิเวศวิทยาและชีววิทยาการอนุรักษ์</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e158&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e158&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e261" data-si="1" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e261&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๖๑ / SCSS 261</span>
-        <span class="cname">สถิติประยุกต์สำหรับวิทยาศาสตร์</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e261&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e261&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e262" data-si="1" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e262&#39;,1,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๖๒ / SCSS 262</span>
-        <span class="cname">การเขียนโปรแกรมและวิทยาศาสตร์ข้อมูล</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e262&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e262&#39;,1)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,1)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="2" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,2)" oncontextmenu="openCtx(event,2)">
-      <div class="sem-h"><span>ปี 2 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
-      <div class="sem-b " data-si="2"><div class="chip " draggable="true" data-cid="e254" data-si="2" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e254&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๕๔ / SCSS 254</span>
-        <span class="cname">พันธุศาสตร์และชีววิทยาโมเลกุล</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e254&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e254&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e255" data-si="2" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e255&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๕๕ / SCSS 255</span>
-        <span class="cname">เคมีเชิงฟิสิกส์</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e255&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e255&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e256" data-si="2" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e256&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๕๖ / SCSS 256</span>
-        <span class="cname">ฟิสิกส์สมัยใหม่</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e256&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e256&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e257" data-si="2" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e257&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๕๗ / SCSS 257</span>
-        <span class="cname">วัสดุศาสตร์เบื้องต้น</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e257&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e257&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e259" data-si="2" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e259&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๕๙ / SCSS 259</span>
-        <span class="cname">เคมีสิ่งแวดล้อม</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e259&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e259&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="e260" data-si="2" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;e260&#39;,2,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">วทยย ๒๖๐ / SCSS 260</span>
-        <span class="cname">ธรณีวิทยาและวิทยาศาสตร์โลก</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;e260&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;e260&#39;,2)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,2)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="3" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,3)" oncontextmenu="openCtx(event,3)">
-      <div class="sem-h"><span>ปี 2 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">12 cr</span></div>
-      <div class="sem-b " data-si="3"><div class="chip " draggable="true" data-cid="s201" data-si="3" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s201&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
-        <span class="ccode">วทยย ๓๐๑ / SCSS 301</span>
-        <span class="cname">การคิดเชิงวิทยาศาสตร์</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s201&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s201&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="s202" data-si="3" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s202&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
-        <span class="ccode">วทยย ๓๐๒ / SCSS 302</span>
-        <span class="cname">การออกแบบการทดลอง</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s202&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s202&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="s203" data-si="3" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s203&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
-        <span class="ccode">วทยย ๓๐๓ / SCSS 303</span>
-        <span class="cname">คณิตศาสตร์สำหรับกระบวนการทางวิทยาศาสตร์</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s203&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s203&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="s204" data-si="3" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;s204&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#F5A62318;color:#F5A623;border:1px solid #F5A62330;font-size:.5rem;padding:1px 4px">DNA-S</span>
-        <span class="ccode">วทยย ๓๐๔ / SCSS 304</span>
-        <span class="cname">วิทยาศาสตร์เชิงกำกับดูแล</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;s204&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;s204&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="lit" data-si="3" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;lit&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#2B5B8A18;color:#2B5B8A;border:1px solid #2B5B8A30;font-size:.5rem;padding:1px 4px">บังคับ MU</span>
-        <span class="ccode">MU Literacy</span>
-        <span class="cname">5 Literacies</span>
-        <span class="ccr">2</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;lit&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;lit&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="free" data-si="3" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;free&#39;,3,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">Free Elec</span>
-        <span class="cname">วิชาเลือกเสรี</span>
-        <span class="ccr">—</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;free&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;free&#39;,3)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,3)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="4" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,4)" oncontextmenu="openCtx(event,4)">
-      <div class="sem-h"><span>ปี 3 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">21 cr</span></div>
-      <div class="sem-b " data-si="4"><div class="chip " draggable="true" data-cid="pdna_h" data-si="4" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_h&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๑๐ / SCSS 310</span>
-        <span class="cname">พื้นฐานวิทยาศาสตร์สุขภาพเพื่อความยั่งยืน</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_h&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_h&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="pdna_e" data-si="4" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_e&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๒๐ / SCSS 320</span>
-        <span class="cname">พื้นฐานวิทยาศาสตร์พลังงานเพื่อความยั่งยืน</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_e&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_e&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="pdna_v" data-si="4" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;pdna_v&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๓๐ / SCSS 330</span>
-        <span class="cname">พื้นฐานวิทยาศาสตร์สิ่งแวดล้อมเพื่อความยั่งยืน</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;pdna_v&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;pdna_v&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h211" data-si="4" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h211&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๑๑ / SCSS 311</span>
-        <span class="cname">วิทยาศาสตร์สุขภาพและชีวิตเพื่อความยั่งยืน</span>
-        <span class="ccr">4</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h211&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h211&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h221" data-si="4" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h221&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๒๑ / SCSS 321</span>
-        <span class="cname">วิทยาศาสตร์พลังงานเพื่อความยั่งยืน</span>
-        <span class="ccr">4</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h221&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h221&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h231" data-si="4" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h231&#39;,4,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๓๓๑ / SCSS 331</span>
-        <span class="cname">วิทยาศาสตร์สิ่งแวดล้อมและระบบนิเวศเพื่อความยั่งยืน</span>
-        <span class="ccr">4</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h231&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h231&#39;,4)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,4)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="5" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,5)" oncontextmenu="openCtx(event,5)">
-      <div class="sem-h"><span>ปี 3 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">18 cr</span></div>
-      <div class="sem-b " data-si="5"><div class="chip " draggable="true" data-cid="h311" data-si="5" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h311&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๑๒ / SCSS 412</span>
-        <span class="cname">เทคโนโลยีสุขภาพและอาหารแห่งอนาคต</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h311&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h311&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h312" data-si="5" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h312&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๑๓ / SCSS 413</span>
-        <span class="cname">ประสบการณ์วิชาชีพด้านวิทยาศาสตร์สุขภาพ</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h312&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h312&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h321" data-si="5" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h321&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๒๒ / SCSS 422</span>
-        <span class="cname">เทคโนโลยีพลังงานแห่งอนาคต</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h321&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h321&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h322" data-si="5" data-ci="3" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h322&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๒๓ / SCSS 423</span>
-        <span class="cname">ประสบการณ์วิชาชีพด้านพลังงาน</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h322&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h322&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h331" data-si="5" data-ci="4" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h331&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๓๒ / SCSS 432</span>
-        <span class="cname">เทคโนโลยีสิ่งแวดล้อมแห่งอนาคต</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h331&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h331&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="h332" data-si="5" data-ci="5" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;h332&#39;,5,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#E8881F18;color:#E8881F;border:1px solid #E8881F30;font-size:.5rem;padding:1px 4px">DNA-H</span>
-        <span class="ccode">วทยย ๔๓๓ / SCSS 433</span>
-        <span class="cname">ประสบการณ์วิชาชีพด้านสิ่งแวดล้อม</span>
-        <span class="ccr">3</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;h332&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;h332&#39;,5)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,5)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="6" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,6)" oncontextmenu="openCtx(event,6)">
-      <div class="sem-h"><span>ปี 4 · เทอม 1</span><span class="loc loc-mu">MU</span><span class="cr">6 cr</span></div>
-      <div class="sem-b " data-si="6"><div class="chip " draggable="true" data-cid="elec" data-si="6" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;elec&#39;,6,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">Elective</span>
-        <span class="cname">วิชาเลือกเฉพาะด้าน</span>
-        <span class="ccr">—</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;elec&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;elec&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="cap" data-si="6" data-ci="1" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;cap&#39;,6,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#1E844918;color:#1E8449;border:1px solid #1E844930;font-size:.5rem;padding:1px 4px">Project/Capstone</span>
-        <span class="ccode">Capstone</span>
-        <span class="cname">โครงงาน / Capstone</span>
-        <span class="ccr">6</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;cap&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;cap&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div class="chip " draggable="true" data-cid="free" data-si="6" data-ci="2" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;free&#39;,6,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#94A7C218;color:#94A7C2;border:1px solid #94A7C230;font-size:.5rem;padding:1px 4px">เลือก</span>
-        <span class="ccode">Free Elec</span>
-        <span class="cname">วิชาเลือกเสรี</span>
-        <span class="ccr">—</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;free&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;free&#39;,6)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,6)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div><div class="sem" data-si="7" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,7)" oncontextmenu="openCtx(event,7)">
-      <div class="sem-h"><span>ปี 4 · เทอม 2</span><span class="loc loc-mu">MU</span><span class="cr">6 cr</span></div>
-      <div class="sem-b " data-si="7"><div class="chip " draggable="true" data-cid="cwie" data-si="7" data-ci="0" ondragstart="dragStart(event)" ondragend="dragEnd(event)" onclick="openM(&#39;cwie&#39;,7,0)">
-        <span class="dot dot-mu"></span>
-        <span class="cat-badge" style="background:#1E844918;color:#1E8449;border:1px solid #1E844930;font-size:.5rem;padding:1px 4px">Project/Capstone</span>
-        <span class="ccode">CWIE</span>
-        <span class="cname">สหกิจศึกษา / CWIE</span>
-        <span class="ccr">6</span>
-        <span class="cedit" onclick="event.stopPropagation();openME(&#39;cwie&#39;)" title="แก้ไข">✎</span>
-        <span class="cdel" onclick="event.stopPropagation();confirmRemove(&#39;cwie&#39;,7)" title="ลบออกจากเทอมนี้">🗑</span>
-      </div><div style="text-align:center;margin:4px 0 2px"><button onclick="event.stopPropagation();openCtxAt(event.target.getBoundingClientRect().left,event.target.getBoundingClientRect().bottom+4,7)" style="background:none;border:1px dashed var(--border);border-radius:5px;padding:4px 14px;font-family:inherit;font-size:.62rem;color:var(--text-faint);cursor:pointer;transition:.15s;width:100%" onmouseover="this.style.borderColor=&#39;var(--blue-mid)&#39;;this.style.color=&#39;var(--navy)&#39;;this.style.background=&#39;rgba(43,91,138,.03)&#39;" onmouseout="this.style.borderColor=&#39;var(--border)&#39;;this.style.color=&#39;var(--text-faint)&#39;;this.style.background=&#39;none&#39;">+ เพิ่มรายวิชา</button></div></div></div></div>
+
+  <div class="legend">
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#8B9EAE"></span>ศึกษาทั่วไป</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#2B5B8A"></span>แกน/พื้นฐาน</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#2E7D5E"></span>ปฏิบัติการ</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#C8A84B"></span>เคมีสมัยใหม่</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#C05820"></span>วิชาชีพ/วิจัย</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#A63020"></span>Track</span>
+    <span class="legend-item"><span style="width:10px;height:10px;border-radius:50%;display:inline-block;background:#5B4A8A"></span>เลือกเสรี</span>
+    <span class="legend-item">🔒 ล็อค</span>
+    <span class="legend-item">⛓ prereq</span>
+  </div>
+
+  <div class="timeline" id="semGrid"></div>
 </div>
 
-<!-- ===== COMPARE PAGE ===== -->
+<!-- ═══════ COMPARE PAGE ═══════ -->
 <div class="page" id="p-compare">
-  <h1>เปรียบเทียบ 4 Tracks</h1>
-  <p class="sub">ดูทุก track พร้อมกัน · วางเมาส์ค้าง 2 วินาทีเพื่อดูเส้นเชื่อมโยง · สรุปหน่วยกิต MU/TU ต่อเทอม</p>
-  <div class="cmp-grid" id="cmpGrid"></div>
+  <div class="page-hd">
+    <h1>📊 เปรียบเทียบโครงสร้างหลักสูตร</h1>
+    <p>หลักสูตร 66 เดิม กับโครงสร้างใหม่ · Modern Chemistry Curriculum</p>
+  </div>
+  <h3 style="color:var(--mu-navy);font-size:.95rem;margin-bottom:9px">ภาพรวมหน่วยกิต</h3>
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:24px">
+    <table class="cmp-table"><thead><tr><th>หมวดวิชา</th><th>ปี 66</th><th>ใหม่</th><th>Δ</th></tr></thead>
+    <tbody id="cmpBody"></tbody></table>
+  </div>
+  <h3 style="color:var(--mu-navy);font-size:.95rem;margin-bottom:9px">เปรียบเทียบกลุ่มแล็บ</h3>
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <table class="cmp-table"><thead><tr><th>ปี 66</th><th>cr</th><th>ใหม่</th><th>cr</th></tr></thead>
+    <tbody id="labCmpBody"></tbody></table>
+  </div>
 </div>
 
-<!-- ===== ACTION PAGE ===== -->
+<!-- ═══════ PLO PAGE ═══════ -->
+<div class="page" id="p-plo">
+  <div class="page-hd">
+    <h1>🎯 PLO / SubPLO</h1>
+    <p>ผลลัพธ์การเรียนรู้ที่คาดหวัง · แตะ ✎ เพื่อแก้ไข</p>
+  </div>
+  <div class="plo-grid" id="ploGrid"></div>
+</div>
+
+<!-- ═══════ TRACKS PAGE ═══════ -->
+<div class="page" id="p-tracks">
+  <div class="page-hd">
+    <h1>🛤 Research Tracks</h1>
+    <p>รายวิชาเลือก 10 หน่วยกิต · นักศึกษาเลือก 5 รายวิชาจาก Track ที่สนใจ</p>
+  </div>
+  <div id="tracksGrid"></div>
+</div>
+
+<!-- ═══════ ACTION PAGE ═══════ -->
 <div class="page" id="p-action">
-  <h1>Action Plan</h1>
-  <p class="sub">สถานะรวมหลักสูตร · เปิดปี 2570</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px" id="apCards">
+  <div class="page-hd">
+    <h1>✅ Action Plan</h1>
+    <p>รายการเตรียมความพร้อมก่อนจัดทำเล่มหลักสูตร</p>
   </div>
+  <div class="action-grid" id="actionGrid"></div>
 </div>
 
-<!-- ===== TIMELINE PAGE ===== -->
-<div class="page" id="p-timeline">
-  <h1>Timeline อนุมัติหลักสูตร</h1>
-  <p class="sub">ปี 2568–2570</p>
-  <div id="tlContent"></div>
-</div>
-
-<!-- ===== TASKS PAGE ===== -->
-<div class="page" id="p-tasks">
-  <h1>กระจายงาน</h1>
-  <p class="sub">Task Board — แบ่งตามผู้รับผิดชอบ</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px" id="taskBoard"></div>
-</div>
-
-<!-- ===== REGISTRY PAGE ===== -->
+<!-- ═══════ REGISTRY PAGE ═══════ -->
 <div class="page" id="p-reg">
-  <h1>📋 ทะเบียนรายวิชา — Course Registry</h1>
-  <p class="sub">คลิกที่แถวเพื่อดูรายละเอียดครบถ้วน · กดแก้ไขเพื่ออัปเดต — ข้อมูลจะลิงก์ไปทุกส่วนของระบบ</p>
-  <div class="reg-toolbar">
-    <input class="reg-search" id="regSearch" placeholder="ค้นหารหัส ชื่อ อาจารย์..." oninput="renderReg()">
-    <button class="filter-btn on" data-rf="all" onclick="setRegFilter(&#39;all&#39;)">ทั้งหมด</button>
-    <button class="filter-btn" data-rf="MU" onclick="setRegFilter(&#39;MU&#39;)">MU</button>
-    <button class="filter-btn" data-rf="TU" onclick="setRegFilter(&#39;TU&#39;)">TU</button>
-    <button class="filter-btn" data-rf="isci" onclick="setRegFilter(&#39;isci&#39;)">I-Sci</button>
-    <button class="filter-btn" data-rf="dna_s" onclick="setRegFilter(&#39;dna_s&#39;)">DNA-S</button>
-    <button class="filter-btn" data-rf="dna_h" onclick="setRegFilter(&#39;dna_h&#39;)">DNA-H</button>
-    <button class="filter-btn" data-rf="project" onclick="setRegFilter(&#39;project&#39;)">Project</button>
-    <button class="reg-add" onclick="openRegAdd()">+ สร้างรายวิชาใหม่</button>
-    <span style="font-family:&#39;IBM Plex Mono&#39;;font-size:.65rem;color:var(--text-faint)" id="regCount"></span>
+  <div class="page-hd">
+    <h1>📋 ทะเบียนรายวิชา</h1>
+    <p>แตะที่เซลล์เพื่อแก้ไข · อัปเดตแผนการศึกษาอัตโนมัติ</p>
   </div>
-  <div class="reg-table-wrap">
-    <table class="reg-table">
-      <thead><tr>
-        <th>รหัส</th><th>ชื่อรายวิชา</th><th>สถาบัน</th><th>ประเภท</th><th>cr</th><th>ผู้ประสานงาน</th><th>แก้ไขล่าสุด</th>
-      </tr></thead>
+  <div class="reg-wrap">
+    <table class="reg-table" id="regTable">
+      <thead><tr><th>รหัส</th><th>ชื่อวิชา</th><th>cr</th><th>หมวด</th><th>คำอธิบาย</th><th id="regLockHeader" style="display:none">Lock</th></tr></thead>
       <tbody id="regBody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- DETAIL OVERLAY (click on course anywhere) -->
-<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
-  <div class="detail-card">
-    <button class="dx" onclick="closeDetail()">✕</button>
-    <div class="d-header">
-      <div class="d-name" id="dName"></div>
-      <div class="d-name-en" id="dNameEn"></div>
-      <div class="d-meta">
-        <span class="d-code" id="dCode"></span>
-        <span class="d-cr" id="dCr"></span>
-        <span class="cat-badge" id="dCat"></span>
-        <span class="loc" id="dLoc" style="font-size:.58rem;font-weight:600;padding:2px 7px;border-radius:3px"></span>
+<!-- ═══════ MODALS ═══════ -->
+<!-- Course detail/edit -->
+<div class="overlay" id="courseModal">
+  <div class="modal">
+    <div class="modal-drag-handle" onclick="closeModal()"></div>
+    <button class="modal-close-x" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">รายละเอียดรายวิชา</h2>
+    <label>รหัสวิชา</label><input id="mCode" type="text">
+    <label>ชื่อวิชา</label><input id="mName" type="text">
+    <label>หน่วยกิต</label><input id="mCr" type="number" min="1" max="20" inputmode="numeric">
+    <label>หมวดวิชา</label>
+    <select id="mCat">
+      <option value="ge">ศึกษาทั่วไป</option>
+      <option value="core">แกน/พื้นฐาน</option>
+      <option value="lab">ปฏิบัติการ</option>
+      <option value="modern">เคมีสมัยใหม่</option>
+      <option value="prof">วิชาชีพ/วิจัย</option>
+      <option value="track">Track เลือก</option>
+      <option value="free">เลือกเสรี</option>
+    </select>
+    <label>คำอธิบาย</label><textarea id="mDesc"></textarea>
+
+    <div class="admin-section" id="modalAdminSection" style="display:none">
+      <h3>🔐 Admin Settings</h3>
+      <div class="admin-row">
+        <label>🔒 ล็อควิชา (ย้ายไม่ได้)</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="mLocked">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+      <label style="font-size:.8rem;color:#c0392b;font-weight:600;display:block;margin-top:8px">⛓ Prerequisite</label>
+      <div class="prereq-tags" id="mPrereqTags"></div>
+      <input class="prereq-search" id="mPrereqSearch" type="text" placeholder="ค้นหาวิชา..." oninput="searchPrereqs(this.value)" autocomplete="off">
+      <div class="prereq-results" id="mPrereqResults"></div>
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+      <button class="btn-primary" onclick="saveModal()">💾 บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add course -->
+<div class="overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-drag-handle" onclick="closeAddModal()"></div>
+    <button class="modal-close-x" onclick="closeAddModal()">✕</button>
+    <h2>＋ เพิ่มรายวิชาใหม่</h2>
+    <label>รหัสวิชา</label><input id="aCid" type="text" placeholder="เช่น SCCH 201">
+    <label>ชื่อวิชา</label><input id="aName" type="text" placeholder="ชื่อวิชา">
+    <label>หน่วยกิต</label><input id="aCr" type="number" value="2" min="1" max="6" inputmode="numeric">
+    <label>หมวดวิชา</label>
+    <select id="aCat">
+      <option value="ge">ศึกษาทั่วไป</option>
+      <option value="core">แกน/พื้นฐาน</option>
+      <option value="lab">ปฏิบัติการ</option>
+      <option value="modern">เคมีสมัยใหม่</option>
+      <option value="prof">วิชาชีพ/วิจัย</option>
+      <option value="track">Track เลือก</option>
+      <option value="free">เลือกเสรี</option>
+    </select>
+    <label>คำอธิบาย</label><textarea id="aDesc"></textarea>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeAddModal()">ยกเลิก</button>
+      <button class="btn-primary" onclick="confirmAdd()">＋ เพิ่มวิชา</button>
+    </div>
+  </div>
+</div>
+
+<!-- Move to semester (mobile) -->
+<div class="overlay" id="moveModal">
+  <div class="modal">
+    <div class="modal-drag-handle" onclick="closeMoveModal()"></div>
+    <button class="modal-close-x" onclick="closeMoveModal()">✕</button>
+    <h2 id="moveModalTitle">ย้ายไปยังเทอม</h2>
+    <div id="moveOptions"></div>
+    <div class="modal-btns" style="margin-top:10px">
+      <button class="btn-cancel" onclick="closeMoveModal()">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav" id="bottomNav">
+  <div class="bn-inner">
+    <button class="bn-btn on" id="bn-plan"    onclick="go('plan')">
+      <span class="bn-icon">📅</span><span class="bn-label">แผน</span>
+    </button>
+    <button class="bn-btn" id="bn-compare" onclick="go('compare')">
+      <span class="bn-icon">📊</span><span class="bn-label">เปรียบ</span>
+    </button>
+    <button class="bn-btn" id="bn-plo"     onclick="go('plo')">
+      <span class="bn-icon">🎯</span><span class="bn-label">PLO</span>
+    </button>
+    <button class="bn-btn" id="bn-tracks"  onclick="go('tracks')">
+      <span class="bn-icon">🛤</span><span class="bn-label">Track</span>
+    </button>
+    <button class="bn-btn" id="bn-action"  onclick="go('action')">
+      <span class="bn-icon">✅</span><span class="bn-label">Action</span>
+    </button>
+    <button class="bn-btn" id="bn-reg"     onclick="go('reg')">
+      <span class="bn-icon">📋</span><span class="bn-label">วิชา</span>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
+const CAT_STYLE = {
+  ge:     { bg:'#8B9EAE18', color:'#5A7A96', border:'#8B9EAE40', label:'ศึกษาทั่วไป',   accent:'#8B9EAE' },
+  core:   { bg:'#2B5B8A18', color:'#2B5B8A', border:'#2B5B8A40', label:'แกน/พื้นฐาน',  accent:'#2B5B8A' },
+  lab:    { bg:'#2E7D5E18', color:'#2E7D5E', border:'#2E7D5E40', label:'ปฏิบัติการ',    accent:'#2E7D5E' },
+  modern: { bg:'#C8A84B18', color:'#9A7A20', border:'#C8A84B50', label:'เคมีสมัยใหม่',  accent:'#C8A84B' },
+  prof:   { bg:'#C0582018', color:'#A04010', border:'#C0582040', label:'วิชาชีพ/วิจัย', accent:'#C05820' },
+  track:  { bg:'#A6302018', color:'#A63020', border:'#A6302040', label:'Track เลือก',   accent:'#A63020' },
+  free:   { bg:'#5B4A8A18', color:'#5B4A8A', border:'#5B4A8A40', label:'เลือกเสรี',    accent:'#5B4A8A' },
+};
+
+let COURSES = {
+  muge100:    { code:'MUGE 100', name:'การศึกษาทั่วไปเพื่อการพัฒนามนุษย์', cr:3, cat:'ge', desc:'General Education for Human Development' },
+  latp111:    { code:'LATP 111', name:'ภาษาไทยเพื่อการสื่อสารในระดับอุดมศึกษา', cr:2, cat:'ge', desc:'Thai Language for Communication in Higher Education' },
+  laen122:    { code:'LAEN 122', name:'Pre-intermediate English', cr:2, cat:'ge', desc:'ภาษาอังกฤษระดับก่อนกลาง' },
+  laen123:    { code:'LAEN 123', name:'Intermediate English', cr:2, cat:'ge', desc:'ภาษาอังกฤษระดับกลาง' },
+  muliteracy: { code:'MUGE XXX', name:'MU Literacy (2 หน่วยกิต)', cr:2, cat:'ge', desc:'รายวิชาเลือกในกลุ่ม MU Literacy' },
+  ge5lit:     { code:'GE 5Lit',  name:'5 Literacies (13 หน่วยกิต)', cr:13, cat:'ge', desc:'รายวิชาเลือกในกลุ่ม 5 Literacies' },
+  scbibio:    { code:'SCBI XXX', name:'General Biology', cr:3, cat:'core', desc:'ชีววิทยาทั่วไปสำหรับนักเคมี' },
+  scbibiolab: { code:'SCBI XXX', name:'Biology Laboratory', cr:1, cat:'lab', desc:'ปฏิบัติการชีววิทยาทั่วไป' },
+  scchchem1:  { code:'SCCH XXX', name:'Chemistry for Chemists I', cr:3, cat:'core', desc:'เคมีพื้นฐาน ภาค 1' },
+  scchlabgen: { code:'SCCH XXX', name:'Chemistry Laboratory', cr:1, cat:'lab', desc:'ปฏิบัติการเคมีทั่วไป' },
+  scmacalc:   { code:'SCMA XXX', name:'Calculus for Chemists', cr:3, cat:'core', desc:'แคลคูลัสสำหรับนักเคมี' },
+  scpyphys:   { code:'SCPY XXX', name:'General Physics', cr:3, cat:'core', desc:'ฟิสิกส์ทั่วไปสำหรับนักเคมี' },
+  scpyphyslab:{ code:'SCPY XXX', name:'Physics Laboratory', cr:1, cat:'lab', desc:'ปฏิบัติการฟิสิกส์' },
+  scchchem2:  { code:'SCCH XXX', name:'Chemistry for Chemists II', cr:3, cat:'core', desc:'เคมีพื้นฐาน ภาค 2' },
+  scmaode:    { code:'SCMA XXX', name:'Ordinary Differential Equations for Chemists', cr:2, cat:'core', desc:'สมการเชิงอนุพันธ์สำหรับนักเคมี' },
+  scscint:    { code:'SCSC XXX', name:'Integrated Science (วิชา A)', cr:3, cat:'core', desc:'วิทยาศาสตร์บูรณาการ' },
+  scscb:      { code:'SCSC XXX', name:'วิชา B (Integrated)', cr:2, cat:'core', desc:'รายวิชา SCSC B' },
+  analchem1:  { code:'SCCH XXX', name:'Analytical Chemistry I', cr:2, cat:'core', desc:'เคมีวิเคราะห์ 1' },
+  analchem2:  { code:'SCCH XXX', name:'Analytical Chemistry II', cr:2, cat:'core', desc:'เคมีวิเคราะห์ 2' },
+  chemdata:   { code:'SCCH XXX', name:'Chemical Measurement and Data Evaluation', cr:2, cat:'core', desc:'การวัดทางเคมีและการประเมินข้อมูล' },
+  orgchem1:   { code:'SCCH XXX', name:'Organic Chemistry I', cr:2, cat:'core', desc:'เคมีอินทรีย์ 1' },
+  orgchem2:   { code:'SCCH XXX', name:'Organic Chemistry II', cr:2, cat:'core', desc:'เคมีอินทรีย์ 2' },
+  orgchem3:   { code:'SCCH XXX', name:'Organic Chemistry III: Mechanism and Molecular Design', cr:2, cat:'core', desc:'เคมีอินทรีย์ 3' },
+  inorgchem1: { code:'SCCH XXX', name:'Inorganic Chemistry I', cr:2, cat:'core', desc:'เคมีอนินทรีย์ 1' },
+  inorgchem2: { code:'SCCH XXX', name:'Inorganic Chemistry II', cr:2, cat:'core', desc:'เคมีอนินทรีย์ 2' },
+  coordchem:  { code:'SCCH XXX', name:'Coordination Chemistry and Catalytic Systems', cr:2, cat:'core', desc:'เคมีโคออร์ดิเนชัน' },
+  physchem1:  { code:'SCCH XXX', name:'Physical Chemistry I: Thermodynamics and Equilibria', cr:2, cat:'core', desc:'เคมีเชิงฟิสิกส์ 1' },
+  physchem2:  { code:'SCCH XXX', name:'Physical Chemistry II: Kinetics and Molecular Processes', cr:2, cat:'core', desc:'เคมีเชิงฟิสิกส์ 2' },
+  physchem3:  { code:'SCCH XXX', name:'Physical Chemistry III: Quantum Chemistry and Molecular Structure', cr:2, cat:'core', desc:'เคมีเชิงฟิสิกส์ 3' },
+  polymchem:  { code:'SCCH XXX', name:'Polymer Chemistry', cr:2, cat:'core', desc:'เคมีพอลิเมอร์' },
+  matchem:    { code:'SCCH XXX', name:'Materials Chemistry', cr:2, cat:'core', desc:'เคมีวัสดุ' },
+  funcmat:    { code:'SCCH XXX', name:'Functional and Sustainable Materials', cr:2, cat:'core', desc:'วัสดุเชิงหน้าที่และยั่งยืน' },
+  biochem:    { code:'SCCH XXX', name:'Basic Biochemistry', cr:3, cat:'core', desc:'ชีวเคมีพื้นฐาน' },
+  lab_meas:   { code:'SCCH XXX', name:'Measurement and Data Chemistry Laboratory', cr:2, cat:'lab', desc:'ปี 2 เทอม 1 · การวัด calibration' },
+  lab_synth:  { code:'SCCH XXX', name:'Chemical Synthesis Laboratory', cr:2, cat:'lab', desc:'ปี 2 เทอม 2 · การสังเคราะห์' },
+  lab_biochem:{ code:'SCCH XXX', name:'Basic Biochemistry Laboratory', cr:1, cat:'lab', desc:'ปี 2 เทอม 2 · ชีวเคมีพื้นฐาน' },
+  lab_molchar:{ code:'SCCH XXX', name:'Molecular and Instrumental Characterization Laboratory', cr:2, cat:'lab', desc:'ปี 3 เทอม 1' },
+  lab_matchar:{ code:'SCCH XXX', name:'Materials and Polymer Characterization Laboratory', cr:2, cat:'lab', desc:'ปี 3 เทอม 2' },
+  lab_integ:  { code:'SCCH XXX', name:'Integrated Chemistry Laboratory', cr:1, cat:'lab', desc:'ปี 3 เทอม 2 · mini-capstone' },
+  molchar:    { code:'SCCH XXX', name:'Molecular Characterization', cr:2, cat:'modern', desc:'การพิสูจน์โครงสร้างโมเลกุล' },
+  matchar:    { code:'SCCH XXX', name:'Materials Characterization', cr:2, cat:'modern', desc:'การพิสูจน์ลักษณะวัสดุ' },
+  chdatai:    { code:'SCCH XXX', name:'Chemical Data Science and AI for Chemists', cr:2, cat:'modern', desc:'data/AI literacy' },
+  cheminf:    { code:'SCCH XXX', name:'Cheminformatics and Molecular Data Analytics', cr:2, cat:'modern', desc:'ฐานข้อมูลโมเลกุล' },
+  greenchem:  { code:'SCCH XXX', name:'Green and Circular Chemistry', cr:2, cat:'modern', desc:'green chemistry BCG circular economy' },
+  qsafety:    { code:'SCCH XXX', name:'Quality, Safety and Regulatory Practice for Chemists', cr:2, cat:'modern', desc:'QA/QC SOP safety' },
+  profskill:  { code:'SCCH XXX', name:'Essential Professional Skills for Chemists', cr:2, cat:'prof', desc:'วิชาชีพ AI career readiness' },
+  resmethod:  { code:'SCCH XXX', name:'Research Methodology and Scientific Writing', cr:2, cat:'prof', desc:'ตั้งคำถามวิจัย scientific writing' },
+  seminar:    { code:'SCCH XXX', name:'Seminar and Research Communication in Chemistry', cr:1, cat:'prof', desc:'นำเสนอ สื่อสาร อภิปรายงานวิจัย' },
+  resproject: { code:'SCCH XXX', name:'Research Project in Chemistry', cr:2, cat:'prof', desc:'capstone research project' },
+  track1:     { code:'Track I',   name:'Chemistry Track Elective I',   cr:2, cat:'track', desc:'รายวิชาเลือกตาม Track' },
+  track2:     { code:'Track II',  name:'Chemistry Track Elective II',  cr:2, cat:'track', desc:'รายวิชาเลือกตาม Track' },
+  track3:     { code:'Track III', name:'Chemistry Track Elective III', cr:2, cat:'track', desc:'รายวิชาเลือกตาม Track' },
+  track4:     { code:'Track IV',  name:'Chemistry Track Elective IV',  cr:2, cat:'track', desc:'รายวิชาเลือกตาม Track' },
+  track5:     { code:'Track V',   name:'Chemistry Track Elective V',   cr:2, cat:'track', desc:'รายวิชาเลือกตาม Track' },
+  freeelec:   { code:'Free',      name:'เลือกเสรี (รวม 6 หน่วยกิต)', cr:3, cat:'free', desc:'รายวิชาเลือกเสรี' },
+  gerem:      { code:'GE/Free',   name:'GE Remaining / Free Elective', cr:6, cat:'free', desc:'หน่วยกิต GE ที่เหลือ' },
+};
+
+let PLAN = [
+  { label:'เทอม 1', courses:['muge100','latp111','laen122','scbibio','scbibiolab','scchchem1','scchlabgen','scmacalc','scpyphys','scpyphyslab'] },
+  { label:'เทอม 2', courses:['laen123','muliteracy','ge5lit','scchchem2','scmaode','scscint','scscb'] },
+  { label:'เทอม 1', courses:['analchem1','orgchem1','inorgchem1','physchem1','polymchem','molchar','lab_meas'] },
+  { label:'เทอม 2', courses:['analchem2','orgchem2','inorgchem2','physchem2','matchem','matchar','lab_synth','biochem','lab_biochem'] },
+  { label:'เทอม 1', courses:['chemdata','orgchem3','coordchem','physchem3','funcmat','chdatai','lab_molchar','profskill'] },
+  { label:'เทอม 2', courses:['lab_matchar','lab_integ','cheminf','greenchem','qsafety','resmethod','track1','track2'] },
+  { label:'เทอม 1', courses:['resproject','track3','track4','track5','freeelec','gerem'] },
+  { label:'เทอม 2', courses:['seminar'] },
+];
+
+let LOCKED  = {};
+let PREREQS = {
+  orgchem2:   ['orgchem1'],   orgchem3:   ['orgchem2'],
+  inorgchem2: ['inorgchem1'], analchem2:  ['analchem1'],
+  physchem2:  ['physchem1'],  physchem3:  ['physchem2'],
+  lab_synth:  ['lab_meas'],   lab_molchar:['lab_synth'],
+  lab_matchar:['lab_molchar'],lab_integ:  ['lab_matchar'],
+  resproject: ['resmethod'],  resmethod:  ['profskill'],
+};
+
+const YEAR_THEMES = [
+  { label:'ปีที่ 1 · Year 1', icon:'🌱' },
+  { label:'ปีที่ 2 · Year 2', icon:'⚗️' },
+  { label:'ปีที่ 3 · Year 3', icon:'🔬' },
+  { label:'ปีที่ 4 · Year 4', icon:'🎓' },
+];
+
+/* ═══════════════════════════════════════════
+   ADMIN
+═══════════════════════════════════════════ */
+let adminMode = false;
+function toggleAdmin() {
+  adminMode = !adminMode;
+  const btn = document.getElementById('adminBtn');
+  btn.classList.toggle('active', adminMode);
+  btn.textContent = adminMode ? '🔐 Admin ON' : '🔐 Admin';
+  document.getElementById('adminBanner').classList.toggle('on', adminMode);
+  const lh = document.getElementById('regLockHeader');
+  if(lh) lh.style.display = adminMode ? '' : 'none';
+  renderGrid();
+  if(document.getElementById('p-reg').classList.contains('on')) renderRegistry();
+  showToast(adminMode ? '🔐 Admin Mode เปิดแล้ว' : '🔓 ออกจาก Admin Mode', adminMode ? 'warn' : 'ok');
+}
+function toggleLock(cid) {
+  LOCKED[cid] = !LOCKED[cid];
+  if(!LOCKED[cid]) delete LOCKED[cid];
+  renderGrid(); markDirty();
+  showToast(LOCKED[cid] ? `🔒 ล็อค "${COURSES[cid]?.name}" แล้ว` : `🔓 ปลดล็อคแล้ว`, 'ok');
+}
+
+/* ═══════════════════════════════════════════
+   PREREQ
+═══════════════════════════════════════════ */
+function checkPrereqs(cid, toSi) {
+  const prereqs = PREREQS[cid] || [];
+  if(!prereqs.length) return { ok:true, missing:[] };
+  const prior = new Set();
+  for(let i=0; i<toSi; i++) PLAN[i].courses.forEach(c => prior.add(c));
+  const missing = prereqs.filter(p => !prior.has(p));
+  return { ok: missing.length===0, missing };
+}
+
+let editingPrereqsFor = null;
+function searchPrereqs(q) {
+  const res = document.getElementById('mPrereqResults');
+  if(!q.trim()) { res.style.display='none'; return; }
+  const lq = q.toLowerCase();
+  const hits = Object.entries(COURSES)
+    .filter(([k,v]) => k!==editingPrereqsFor && (v.code.toLowerCase().includes(lq)||v.name.toLowerCase().includes(lq)))
+    .slice(0,8);
+  if(!hits.length) { res.style.display='none'; return; }
+  res.innerHTML = hits.map(([k,v])=>
+    `<div class="prereq-result-item" onclick="addPrereqTag('${k}')">
+      <strong style="font-family:'IBM Plex Mono',monospace;font-size:.78rem">${v.code}</strong> · ${v.name}
+    </div>`).join('');
+  res.style.display = 'block';
+}
+function addPrereqTag(cid) {
+  if(!editingPrereqsFor) return;
+  if(!PREREQS[editingPrereqsFor]) PREREQS[editingPrereqsFor]=[];
+  if(PREREQS[editingPrereqsFor].includes(cid)) return;
+  PREREQS[editingPrereqsFor].push(cid);
+  renderPrereqTags();
+  document.getElementById('mPrereqSearch').value='';
+  document.getElementById('mPrereqResults').style.display='none';
+  markDirty();
+}
+function removePrereqTag(cid) {
+  if(!editingPrereqsFor) return;
+  PREREQS[editingPrereqsFor]=(PREREQS[editingPrereqsFor]||[]).filter(p=>p!==cid);
+  if(!PREREQS[editingPrereqsFor].length) delete PREREQS[editingPrereqsFor];
+  renderPrereqTags(); markDirty();
+}
+function renderPrereqTags() {
+  const tags = PREREQS[editingPrereqsFor]||[];
+  document.getElementById('mPrereqTags').innerHTML = tags.map(p=>{
+    const c=COURSES[p];
+    return `<span class="prereq-tag"><span style="font-family:'IBM Plex Mono',monospace;font-size:.75rem">${c?.code||p}</span><button onclick="removePrereqTag('${p}')">×</button></span>`;
+  }).join('')||`<span style="font-size:.76rem;color:#bbb;padding:4px">ยังไม่มี prerequisite</span>`;
+}
+
+/* ═══════════════════════════════════════════
+   CHIP HTML
+═══════════════════════════════════════════ */
+function chipHTML(cid, si) {
+  const c = COURSES[cid]; if(!c) return '';
+  const cs = CAT_STYLE[c.cat]||CAT_STYLE.ge;
+  const isLocked = !!LOCKED[cid];
+  const hasPrereqs = (PREREQS[cid]||[]).length>0;
+  const prereqTip = hasPrereqs ? (PREREQS[cid]||[]).map(p=>COURSES[p]?.code||p).join(', ') : '';
+
+  return `<div class="chip${isLocked?' chip-locked':''}"
+    draggable="${!isLocked}"
+    data-cid="${cid}" data-si="${si}"
+    style="--chip-accent:${cs.accent}"
+    ondragstart="${isLocked?'showLockWarn(event)':'dragStart(event)'}"
+    ondragend="dragEnd(event)"
+    ontouchstart="touchStart(event)"
+    ontouchmove="touchMove(event)"
+    ontouchend="touchEnd(event)"
+    onclick="chipClick(event,'${cid}')">
+
+    <div class="chip-row1">
+      <span class="ccode">${c.code}</span>
+      <div class="chip-right">
+        <span class="cat-badge" style="background:${cs.bg};color:${cs.color};border-color:${cs.border}">${cs.label}</span>
+        <span class="ccr">${c.cr}<span style="font-size:.68rem;font-weight:400;opacity:.6"> cr</span></span>
       </div>
     </div>
-    <div class="d-section"><div class="d-label">คำอธิบายรายวิชา (ภาษาไทย)</div><div class="d-text" id="dTh"></div></div>
-    <div class="d-section"><div class="d-label">Course Description (English)</div><div class="d-text" id="dEn"></div></div>
-    <div class="d-prof-box" id="dProfBox">
-      <div class="d-label" style="margin-bottom:4px">ผู้ประสานงานรายวิชา</div>
-      <div class="d-prof-name" id="dProf"></div>
-      <div class="d-prof-email" id="dEmail"></div>
+    <div class="chip-row2">
+      <span class="cname">${c.name}</span>
+      ${isLocked?`<span class="lock-indicator" title="ล็อค">🔒</span>`:''}
+      ${hasPrereqs?`<span class="prereq-indicator" title="Prereq: ${prereqTip}">⛓</span>`:''}
     </div>
-    <div class="d-footer">
-      <div class="d-ts" id="dTs"></div>
-      <div class="d-actions">
-        <button class="btn bs" onclick="closeDetail();go(&#39;reg&#39;);setTimeout(()=&gt;document.getElementById(&#39;regSearch&#39;).value=detailCid?DB[detailCid]?.c?.split(&#39;/&#39;)[0]?.trim():&#39;&#39;,100);setTimeout(renderReg,150)">📋 ไปทะเบียน</button>
-        <button class="btn bp" onclick="closeDetail();openME(detailCid)">✎ แก้ไข</button>
-        <button class="btn" id="dDeleteBtn" style="display:none;background:#C0392B;color:#fff;border:none;font-weight:600;padding:8px 18px;font-size:.75rem;border-radius:6px;transition:all .15s" onmouseover="this.style.background=&#39;#A93226&#39;" onmouseout="this.style.background=&#39;#C0392B&#39;" onclick="doDeleteFromOverlay(this)">🗑 ลบออกจากแผน</button>
+
+    <div class="chip-actions" onclick="event.stopPropagation()">
+      ${adminMode?`<button class="chip-btn lock-btn${isLocked?' locked':''}" onclick="toggleLock('${cid}')">${isLocked?'🔒':'🔓'}</button>`:''}
+      <button class="chip-btn move-btn" onclick="openMoveModal('${cid}',${si})">⇄ ย้าย</button>
+      <button class="chip-btn edit-btn" onclick="openModalEdit('${cid}')">✎</button>
+      <button class="chip-btn del-btn"  onclick="removeCourse('${cid}',${si})">🗑</button>
+    </div>
+  </div>`;
+}
+
+/* Prevent chip click from triggering when actions tapped */
+function chipClick(e, cid) {
+  if(e.target.closest('.chip-actions')) return;
+  openModal(cid);
+}
+
+/* ═══════════════════════════════════════════
+   RENDER GRID
+═══════════════════════════════════════════ */
+function renderGrid() {
+  const grid = document.getElementById('semGrid');
+  grid.innerHTML = '';
+  for(let y=0; y<4; y++) {
+    const si1=y*2, si2=y*2+1;
+    const s1=PLAN[si1], s2=PLAN[si2];
+    const cr1=s1.courses.reduce((s,id)=>s+(COURSES[id]?.cr||0),0);
+    const cr2=s2?s2.courses.reduce((s,id)=>s+(COURSES[id]?.cr||0),0):0;
+    const yt=YEAR_THEMES[y];
+    const yDiv=document.createElement('div');
+    yDiv.className='year-block'; yDiv.dataset.year=y+1;
+    yDiv.innerHTML=`
+      <div class="year-header">
+        <span style="font-size:1.25rem">${yt.icon}</span>
+        <span>${yt.label}</span>
+        <span class="year-cr">${cr1+cr2} cr</span>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="sem-row">
+        <div class="sem" data-si="${si1}"
+          ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,${si1})">
+          <div class="sem-h"><span>📘</span><span>${s1.label}</span><span class="cr">${cr1} cr</span></div>
+          <div class="sem-b" data-si="${si1}">
+            ${s1.courses.map(cid=>chipHTML(cid,si1)).join('')}
+            <button class="add-btn" onclick="openAddModal(${si1})">＋ เพิ่มรายวิชา</button>
+          </div>
+        </div>
+        <div class="sem" data-si="${si2}"
+          ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event,${si2})">
+          <div class="sem-h"><span>📗</span><span>${s2?s2.label:''}</span><span class="cr">${cr2} cr</span></div>
+          <div class="sem-b" data-si="${si2}">
+            ${s2?s2.courses.map(cid=>chipHTML(cid,si2)).join(''):''}
+            <button class="add-btn" onclick="openAddModal(${si2})">＋ เพิ่มรายวิชา</button>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(yDiv);
+  }
+}
 
-<!-- SAVE HTML MODAL -->
-<div class="save-overlay" id="saveOverlay" onclick="if(event.target===this)closeSaveHTML()">
-  <div class="detail-card" style="max-width:440px">
-    <button class="dx" onclick="closeSaveHTML()">✕</button>
-    <h3 style="font-size:.95rem;font-weight:600;margin-bottom:12px">💾 Save as HTML</h3>
-    <p style="font-size:.72rem;color:var(--text-dim);margin-bottom:8px">บันทึกไฟล์ HTML พร้อมข้อมูลทั้งหมดที่แก้ไขแล้ว — จะเปิดหน้าต่างให้เลือกที่บันทึก</p>
-    <div class="fl">ชื่อไฟล์</div>
-    <input class="ei" id="saveFilename" value="Sustainability_Planner" style="margin-bottom:12px">
-    <div class="br">
-      <button class="btn bs" onclick="closeSaveHTML()">ยกเลิก</button>
-      <button class="btn bp" onclick="doSaveHTML()">💾 บันทึก</button>
-    </div>
-  </div>
-</div>
+/* ═══════════════════════════════════════════
+   DRAG & DROP (desktop)
+═══════════════════════════════════════════ */
+let dragging=null, fromSi=-1;
+function dragStart(e) {
+  dragging=e.currentTarget.dataset.cid; fromSi=+e.currentTarget.dataset.si;
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed='move';
+}
+function dragEnd(e) { e.currentTarget.classList.remove('dragging'); }
+function dragOver(e) { e.preventDefault(); e.currentTarget.closest('.sem')?.classList.add('drag-over'); }
+function dragLeave(e) { e.currentTarget.closest('.sem')?.classList.remove('drag-over'); }
+function showLockWarn(e) { e.preventDefault(); showToast('🔒 วิชานี้ถูกล็อค ย้ายไม่ได้','warn'); }
+function drop(e, toSi) {
+  e.preventDefault();
+  e.currentTarget.closest('.sem')?.classList.remove('drag-over');
+  if(!dragging||fromSi===toSi){dragging=null;return;}
+  if(LOCKED[dragging]){showToast('🔒 วิชานี้ถูกล็อค','warn');dragging=null;fromSi=-1;return;}
+  const chk=checkPrereqs(dragging,toSi);
+  if(!chk.ok){showToast(`⛓ ต้องผ่าน: ${chk.missing.map(id=>COURSES[id]?.name||id).join(', ')}`,'warn');dragging=null;fromSi=-1;return;}
+  PLAN[fromSi].courses=PLAN[fromSi].courses.filter(c=>c!==dragging);
+  if(!PLAN[toSi].courses.includes(dragging)) PLAN[toSi].courses.push(dragging);
+  dragging=null;fromSi=-1;
+  renderGrid();markDirty();
+}
 
-<!-- COURSE EDIT MODAL -->
-<div class="mo" id="modal" onclick="if(event.target===this)closeM()">
-  <div class="md" style="position:relative">
-    <button class="mx" onclick="closeM()">✕</button>
-    <div id="vMode">
-      <h3 id="mN"></h3>
-      <div class="mc" id="mC"></div>
-      <div class="mcr" id="mCr"></div>
-      <div class="fl">คำอธิบาย (ไทย)</div><div class="ft" id="mTh"></div>
-      <div class="fl">Description (EN)</div><div class="ft" id="mEn"></div>
-      <div class="fl">สถานที่เรียน</div><div class="ft" id="mLoc"></div>
-      <div class="br"><button class="btn bs" onclick="editM()">✎ แก้ไข</button><button class="btn bs" onclick="closeM()">ปิด</button></div>
-    </div>
-    <div id="eMode" style="display:none">
-      <div class="fl">ชื่อรายวิชา</div><input class="ei" id="eN">
-      <div class="fl">รหัสวิชา</div><input class="ei" id="eC" placeholder="วทวค ๒๐๑ / SCSS 201">
-      <div class="fl">หน่วยกิต</div><input class="ei" id="eCr">
-      <div class="fl">ประเภทวิชา (MU)</div>
-      <select class="ei" id="eCat" style="cursor:pointer"><option value="isci">I-Sci (Intellectual Science)</option><option value="mu_req">บังคับ MU</option><option value="elective">เลือก</option><option value="dna_h">DNA-H</option><option value="dna_s">DNA-S</option><option value="seminar">สัมมนา</option><option value="project">Project / Capstone</option><option value="tu">TU</option></select>
-      <div class="fl">คำอธิบาย (TH)</div><textarea class="ea" id="eTh" rows="3"></textarea>
-      <div class="fl">Description (EN)</div><textarea class="ea" id="eEn" rows="3"></textarea>
-      <div style="font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);margin:12px 0 6px;padding-top:10px;border-top:1px dashed var(--border)">ผู้ประสานงานรายวิชา</div>
-      <div class="fl">ตำแหน่งทางวิชาการ ชื่อ นามสกุล</div><input class="ei" id="eProf" placeholder="เช่น ผศ. ขวัญ อารยะธนิตกุล">
-      <div class="fl">อีเมล</div><input class="ei" id="eEmail" placeholder="name@mahidol.ac.th" type="email">
-      <div class="br"><button class="btn bs" onclick="cancelE()">ยกเลิก</button><button class="btn bp" onclick="saveE()">💾 บันทึก</button></div>
-    </div>
-  </div>
-</div>
+/* ═══════════════════════════════════════════
+   TOUCH DRAG & DROP (mobile)
+═══════════════════════════════════════════ */
+let tDragging=null, tFromSi=-1, tGhost=null, tTimer=null, tMoved=false;
 
-<div id="confirmPop" class="confirm-pop" style="display:none"></div>
-<div id="undoContainer"></div>
-<div class="ctx-menu" id="ctxMenu" style="display:none"></div>
+function touchStart(e) {
+  const chip=e.currentTarget;
+  const cid=chip.dataset.cid;
+  if(LOCKED[cid]) return;
+  tMoved=false;
+  tTimer=setTimeout(()=>{
+    tDragging=cid; tFromSi=+chip.dataset.si;
+    chip.classList.add('touch-dragging');
+    // Build ghost
+    const g=document.getElementById('touchGhost');
+    const cs=CAT_STYLE[COURSES[cid]?.cat]||CAT_STYLE.ge;
+    g.style.cssText=`position:fixed;z-index:9999;pointer-events:none;display:block;
+      width:${Math.min(chip.offsetWidth, window.innerWidth-20)}px;
+      border:1.5px solid ${cs.border};border-left:4px solid ${cs.accent};
+      background:#fff;border-radius:9px;padding:10px 12px;
+      box-shadow:0 10px 32px rgba(0,0,0,.32);
+      opacity:.88;transform:rotate(2deg) scale(1.05);`;
+    g.innerHTML=`<div style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.88rem;color:#1A3A5C;margin-bottom:4px">${COURSES[cid].code}</div>
+      <div style="font-size:.84rem;color:#1A2A3A">${COURSES[cid].name}</div>`;
+    navigator.vibrate&&navigator.vibrate(40);
+    positionGhost(e.touches[0]);
+    tGhost=g;
+  }, 180);
+}
 
-  <script src="script.js"></script>
+function touchMove(e) {
+  tMoved=true;
+  if(tDragging) {
+    e.preventDefault();
+    positionGhost(e.touches[0]);
+    // Highlight target semester
+    const el=document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+    document.querySelectorAll('.sem.drag-over').forEach(s=>s.classList.remove('drag-over'));
+    const semEl=el?.closest('.sem');
+    if(semEl&&+semEl.dataset.si!==tFromSi) semEl.classList.add('drag-over');
+  }
+}
+
+function touchEnd(e) {
+  clearTimeout(tTimer);
+  if(!tDragging){return;}
+  const t=e.changedTouches[0];
+  const el=document.elementFromPoint(t.clientX,t.clientY);
+  const semEl=el?.closest('.sem');
+  // Cleanup
+  document.getElementById('touchGhost').style.display='none';
+  document.querySelectorAll('.sem.drag-over').forEach(s=>s.classList.remove('drag-over'));
+  document.querySelectorAll('.chip.touch-dragging').forEach(c=>c.classList.remove('touch-dragging'));
+  if(semEl){
+    const toSi=+semEl.dataset.si;
+    if(toSi!==tFromSi){
+      const chk=checkPrereqs(tDragging,toSi);
+      if(!chk.ok){
+        showToast(`⛓ ต้องผ่าน: ${chk.missing.map(id=>COURSES[id]?.name||id).join(', ')}`,'warn');
+      } else {
+        PLAN[tFromSi].courses=PLAN[tFromSi].courses.filter(c=>c!==tDragging);
+        if(!PLAN[toSi].courses.includes(tDragging)) PLAN[toSi].courses.push(tDragging);
+        renderGrid();markDirty();
+        showToast('✅ ย้ายวิชาแล้ว','ok');
+      }
+    }
+  }
+  tDragging=null;tFromSi=-1;tGhost=null;
+}
+
+function positionGhost(touch) {
+  const g=document.getElementById('touchGhost');
+  if(!g) return;
+  const w=parseInt(g.style.width);
+  g.style.left=Math.max(4,Math.min(touch.clientX-w/2,window.innerWidth-w-4))+'px';
+  g.style.top=(touch.clientY-60)+'px';
+}
+
+/* ═══════════════════════════════════════════
+   MOVE MODAL (tap ⇄)
+═══════════════════════════════════════════ */
+let movingCid=null, movingFromSi=-1;
+function openMoveModal(cid, si) {
+  if(LOCKED[cid]){showToast('🔒 วิชานี้ถูกล็อค','warn');return;}
+  movingCid=cid; movingFromSi=si;
+  const c=COURSES[cid];
+  document.getElementById('moveModalTitle').textContent=`ย้าย "${c.name}"`;
+  const yearIcons=['🌱','⚗️','🔬','🎓'];
+  const semIcons=['📘','📗'];
+  const opts=PLAN.map((s,i)=>{
+    if(i===si) return ''; // skip current
+    const cr=s.courses.reduce((t,id)=>t+(COURSES[id]?.cr||0),0);
+    const y=Math.floor(i/2), sem=i%2;
+    const chk=checkPrereqs(cid,i);
+    const blocked=!chk.ok;
+    const lockedInSem=false;
+    return `<div class="sem-option${blocked?' sem-opt-blocked':''}" onclick="${blocked?`showToast('⛓ ต้องผ่าน prerequisite ก่อน','warn')`:`doMove(${i})`}" style="${blocked?'opacity:.5;cursor:not-allowed':''}">
+      <span class="opt-icon">${yearIcons[y]} ${semIcons[sem]}</span>
+      <div>
+        <div style="font-weight:600;font-size:.9rem">ปีที่ ${y+1} · ${s.label}</div>
+        <div style="font-size:.76rem;color:var(--text-faint)">${blocked?'⚠ ต้องผ่าน '+chk.missing.map(id=>COURSES[id]?.code||id).join(', '):'พร้อมย้าย'}</div>
+      </div>
+      <span class="opt-cr">${cr} cr</span>
+    </div>`;
+  }).join('');
+  document.getElementById('moveOptions').innerHTML=opts||'<p style="color:var(--text-faint);font-size:.9rem;padding:8px">ไม่มีเทอมที่ย้ายได้</p>';
+  document.getElementById('moveModal').classList.add('open');
+}
+function doMove(toSi) {
+  if(!movingCid) return;
+  PLAN[movingFromSi].courses=PLAN[movingFromSi].courses.filter(c=>c!==movingCid);
+  if(!PLAN[toSi].courses.includes(movingCid)) PLAN[toSi].courses.push(movingCid);
+  closeMoveModal(); renderGrid(); markDirty();
+  showToast('✅ ย้ายวิชาแล้ว','ok');
+}
+function closeMoveModal() {
+  document.getElementById('moveModal').classList.remove('open');
+  movingCid=null; movingFromSi=-1;
+}
+
+/* ═══════════════════════════════════════════
+   REMOVE
+═══════════════════════════════════════════ */
+function removeCourse(cid, si) {
+  if(LOCKED[cid]){showToast('🔒 ล็อคอยู่ ลบไม่ได้','warn');return;}
+  if(!confirm(`ลบ "${COURSES[cid]?.name}" ออกจากเทอมนี้?`)) return;
+  PLAN[si].courses=PLAN[si].courses.filter(c=>c!==cid);
+  renderGrid(); markDirty();
+}
+
+/* ═══════════════════════════════════════════
+   MODALS
+═══════════════════════════════════════════ */
+let editingCid=null;
+function openModal(cid) {
+  const c=COURSES[cid]; if(!c) return;
+  editingCid=cid; editingPrereqsFor=cid;
+  document.getElementById('modalTitle').textContent=c.name;
+  document.getElementById('mCode').value=c.code;
+  document.getElementById('mName').value=c.name;
+  document.getElementById('mCr').value=c.cr;
+  document.getElementById('mCat').value=c.cat;
+  document.getElementById('mDesc').value=c.desc||'';
+  const aS=document.getElementById('modalAdminSection');
+  aS.style.display=adminMode?'':'none';
+  if(adminMode){
+    document.getElementById('mLocked').checked=!!LOCKED[cid];
+    renderPrereqTags();
+    document.getElementById('mPrereqSearch').value='';
+    document.getElementById('mPrereqResults').style.display='none';
+  }
+  document.getElementById('courseModal').classList.add('open');
+}
+function openModalEdit(cid){ openModal(cid); }
+function closeModal(){
+  document.getElementById('courseModal').classList.remove('open');
+  editingCid=null; editingPrereqsFor=null;
+}
+function saveModal(){
+  if(!editingCid) return;
+  COURSES[editingCid]={...COURSES[editingCid],
+    code:document.getElementById('mCode').value,
+    name:document.getElementById('mName').value,
+    cr:+document.getElementById('mCr').value,
+    cat:document.getElementById('mCat').value,
+    desc:document.getElementById('mDesc').value,
+  };
+  if(adminMode){
+    document.getElementById('mLocked').checked?LOCKED[editingCid]=true:delete LOCKED[editingCid];
+  }
+  closeModal(); renderGrid(); markDirty();
+  showToast('✅ บันทึกแล้ว','ok');
+}
+
+let addToSi=-1;
+function openAddModal(si){
+  addToSi=si;
+  ['aCid','aName','aDesc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('aCr').value=2;
+  document.getElementById('aCat').value='core';
+  document.getElementById('addModal').classList.add('open');
+}
+function closeAddModal(){document.getElementById('addModal').classList.remove('open');addToSi=-1;}
+function confirmAdd(){
+  const name=document.getElementById('aName').value.trim();
+  if(!name){alert('กรุณาระบุชื่อวิชา');return;}
+  const newId='new_'+Date.now();
+  COURSES[newId]={
+    code:document.getElementById('aCid').value||'SCCH XXX',
+    name, cr:+document.getElementById('aCr').value,
+    cat:document.getElementById('aCat').value,
+    desc:document.getElementById('aDesc').value,
+  };
+  PLAN[addToSi].courses.push(newId);
+  closeAddModal(); renderGrid(); markDirty();
+  showToast(`✅ เพิ่ม "${name}" แล้ว`,'ok');
+}
+
+/* ═══════════════════════════════════════════
+   COMPARE / PLO / TRACKS / ACTION / REGISTRY
+═══════════════════════════════════════════ */
+function renderCompare(){
+  const rows=[['หมวดศึกษาทั่วไป',30,24],['หมวดวิชาเฉพาะ',91,97],
+    ['  รายวิชาแกน/พื้นฐาน',27,25],['  รายวิชาเฉพาะด้านบังคับ',47,62],
+    ['  รายวิชาเฉพาะด้านเลือก',17,10],['หมวดวิชาเลือกเสรี',6,6],['รวมตลอดหลักสูตร',127,127]];
+  document.getElementById('cmpBody').innerHTML=rows.map(r=>{
+    const d=r[2]-r[1],dc=d>0?'delta-plus':d<0?'delta-minus':'delta-zero',ds=d>0?'+'+d:d;
+    return `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="${dc}">${ds}</td></tr>`;
+  }).join('');
+  const labs=[
+    ['Analytical Chemistry Lab',1,'Measurement & Data Chemistry Lab',2],
+    ['Physical Chemistry Lab',1,'(รวมใน Measurement)','—'],
+    ['Organic Chemistry Lab',2,'Chemical Synthesis Lab',2],
+    ['Inorganic Chemistry Lab',1,'Synthesis + Integrated Lab','2+1'],
+    ['Instrumental Analysis Lab',2,'Molecular & Instrumental Char. Lab',2],
+    ['Polymer Lab',1,'Materials & Polymer Char. Lab',2],
+    ['Basic Biochemistry Lab',1,'Basic Biochemistry Lab',1],
+    ['—','—','Integrated Chemistry Lab',1],
+  ];
+  document.getElementById('labCmpBody').innerHTML=labs.map(r=>
+    `<tr><td>${r[0]}</td><td style="text-align:center">${r[1]}</td><td>${r[2]}</td><td style="text-align:center">${r[3]}</td></tr>`
+  ).join('');
+}
+
+const PLO_DATA=[
+  {id:'PLO1',title:'PLO1 · วิเคราะห์และแก้ปัญหาทางเคมี',
+    full:'วิเคราะห์และแก้ปัญหาทางเคมีโดยใช้หลักการทางเคมี ข้อมูล หลักฐานเชิงประจักษ์ เครื่องมือดิจิทัล และจรรยาบรรณ',
+    subs:['1.1 ใช้หลักการและทฤษฎีทางเคมีร่วมกับคณิตศาสตร์ ฟิสิกส์ ชีววิทยา สถิติ เพื่อระบุปัญหาทางเคมีได้',
+      '1.2 สืบค้น คัดกรอง ประเมินความน่าเชื่อถือ และอ้างอิงข้อมูลทางวิทยาศาสตร์จากวรรณกรรมและฐานข้อมูล',
+      '1.3 วิเคราะห์และแปลผลข้อมูลเชิงคุณภาพและเชิงปริมาณโดยใช้สถิติหรือเครื่องมือดิจิทัล',
+      '1.4 เสนอแนวทางแก้ปัญหาทางเคมีบนพื้นฐานของหลักฐาน ความปลอดภัย จริยธรรม']},
+  {id:'PLO2',title:'PLO2 · ปฏิบัติงานในห้องปฏิบัติการ',
+    full:'ปฏิบัติงานทางเคมีในห้องปฏิบัติการได้อย่างถูกต้อง ปลอดภัย แม่นยำ และรับผิดชอบตามมาตรฐานวิชาชีพ',
+    subs:['2.1 เลือกและใช้เครื่องมือ วัสดุ สารเคมี และวิธีการทดลองได้เหมาะสม',
+      '2.2 ปฏิบัติการทดลองได้ถูกต้อง ปลอดภัย และคำนึงถึงการประเมินความเสี่ยง',
+      '2.3 บันทึก จัดการ และรายงานข้อมูลตามหลัก data integrity และ QA/QC',
+      '2.4 จัดการสารเคมีและของเสียตามหลักความปลอดภัยและเคมีสีเขียว']},
+  {id:'PLO3',title:'PLO3 · สื่อสารความรู้ทางเคมี',
+    full:'สื่อสารความรู้ ข้อมูล และข้อค้นพบทางเคมีได้ถูกต้อง ชัดเจน สร้างสรรค์ เหมาะสมกับกลุ่มเป้าหมาย',
+    subs:['3.1 เขียนรายงาน บทคัดย่อ ข้อเสนอโครงงาน และเอกสารวิชาการทางเคมีได้',
+      '3.2 นำเสนอข้อมูลด้วยตาราง กราฟ แผนภาพ poster หรือ data visualization',
+      '3.3 อภิปราย วิพากษ์ และตอบคำถามทางวิทยาศาสตร์โดยใช้เหตุผลและหลักฐาน',
+      '3.4 สื่อสารประเด็นทางเคมีต่อผู้ฟังหลายกลุ่ม เช่น นักวิทยาศาสตร์ อุตสาหกรรม ชุมชน']},
+  {id:'PLO4',title:'PLO4 · ทำงานร่วมกับผู้อื่น',
+    full:'ทำงานร่วมกับผู้อื่นในบริบทวิชาชีพเคมีได้อย่างรับผิดชอบ มีจริยธรรม เคารพความแตกต่าง และเรียนรู้ตลอดชีวิต',
+    subs:['4.1 ปฏิบัติงานตามบทบาทหน้าที่ได้ครบถ้วน ตรงเวลา และรับผิดชอบต่อผลลัพธ์',
+      '4.2 ทำงานร่วมกับผู้อื่นโดยรับฟังความคิดเห็น เคารพความแตกต่าง',
+      '4.3 แสดงบทบาทสมาชิกทีมและผู้นำตามสถานการณ์',
+      '4.4 สะท้อนการเรียนรู้ รับข้อเสนอแนะ และพัฒนาทักษะอย่างต่อเนื่อง']},
+  {id:'PLO5',title:'PLO5 · ผลิตผลงานวิจัย/นวัตกรรม',
+    full:'ผลิตผลงานวิจัยหรือนวัตกรรมเบื้องต้นทางเคมี โดยใช้กระบวนการวิจัยและจรรยาบรรณทางวิชาการ',
+    subs:['5.1 ตั้งคำถามวิจัยหรือโจทย์ทางเคมีที่เหมาะสม และออกแบบวิธีดำเนินงานได้',
+      '5.2 ดำเนินงานวิจัยโดยรวบรวม วิเคราะห์ และแปลผลข้อมูลอย่างเป็นระบบ',
+      '5.3 สังเคราะห์องค์ความรู้จากผลการทดลองและวรรณกรรม',
+      '5.4 เผยแพร่ผลงานในรูปแบบรายงาน โปสเตอร์ หรือการนำเสนอ']},
+];
+function renderPLO(){
+  document.getElementById('ploGrid').innerHTML=PLO_DATA.map((p,pi)=>`
+    <div class="plo-card">
+      <div class="plo-hd"><span>${p.title}</span>
+        <button class="plo-edit-btn" onclick="editPLO(${pi})">✎</button></div>
+      <div style="padding:9px 14px;font-size:.82rem;color:#3A5570;border-bottom:1px solid var(--border-lt)">${p.full}</div>
+      <div class="plo-body">${p.subs.map(s=>`<div class="subplo">${s}</div>`).join('')}</div>
+    </div>`).join('');
+}
+function editPLO(pi){
+  const nf=prompt('แก้ไขคำอธิบาย PLO:',PLO_DATA[pi].full);
+  if(nf!==null){PLO_DATA[pi].full=nf;renderPLO();markDirty();}
+}
+
+const TRACKS=[
+  {name:'Chemical Measurement, Data and Quality Innovation',color:'#2B5B8A',
+    courses:['Trends in Analytical Science','Environmental Chemistry','Principles of Metrology','Quality Management System','Quality Assurance in Laboratory Testing','Industrial Training']},
+  {name:'Molecular Discovery and Functional Molecular Design',color:'#2E7D5E',
+    courses:['Organic Synthesis','Physical Organic Chemistry','Organic and Supramolecular Chemistry','Natural Product Chemistry','Bioorganic Chemistry','Medicinal Chemistry','Advanced NMR Spectroscopy']},
+  {name:'Inorganic, Catalytic and Molecular Systems',color:'#5B4A8A',
+    courses:['Bioinorganic Chemistry','Modern Main Group Chemistry','Catalysis by Organometallic Compounds','Supramolecular Chemistry of Nanomaterials','Computational Chemistry']},
+  {name:'Energy, Computation and Interfacial Chemistry',color:'#A63020',
+    courses:['Surface Chemistry and Colloids','Principles of Electrochemistry','Statistical Thermodynamics','Computational Chemistry','Special Topics in Physical Chemistry']},
+  {name:'Sustainable Materials, Polymers and Circular Industrial Innovation',color:'#C8A84B',
+    courses:['Industrial Chemistry','Polymer Materials Chemistry','Functional Polymers','Rubber Technology','Plastics Technology','Introduction to Materials Science','Industrial Visits','Cooperative Work Education']},
+];
+function renderTracks(){
+  document.getElementById('tracksGrid').innerHTML=TRACKS.map(t=>`
+    <div class="track-card">
+      <div class="track-hd" style="background:${t.color}">${t.name}</div>
+      <div class="track-b">${t.courses.map(c=>`
+        <div class="track-course"><span class="track-dot" style="background:${t.color}"></span>${c}</div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+const ACTION_DATA=[
+  {title:'โครงสร้างหลักสูตร',items:['ตัดสินใจว่าจะคงปี 1 ภาค 2 ที่ 25 หน่วยกิต หรือกระจาย MU Literacy/SCSC ไปปี 4','กำหนดความหมายของ SCSC A/B ว่าอยู่ในหมวดใด','พิจารณาว่าเลือกเสรี 6 หน่วยกิตสามารถนับเป็น track ได้หรือไม่']},
+  {title:'รายวิชาและ Lab',items:['เขียนคำอธิบายรายวิชา Lab ใหม่ให้เน้นสมรรถนะ','ระบุ data integrity และ QA/QC ในคำอธิบาย Lab','กำหนดรหัสวิชา (SCCH XXX) ให้ครบทุกรายวิชา','ยืนยัน prerequisite ของรายวิชาแกนทุกตัว']},
+  {title:'Curriculum Mapping',items:['จัดทำ mapping ระหว่าง PLO/SubPLO กับรายวิชาบังคับ','ตรวจสอบว่า lab สมรรถนะครอบ PLO2 ครบ','ตรวจสอบว่า modern chemistry ครอบ PLO1 และ PLO5']},
+  {title:'เล่มหลักสูตร',items:['เตรียม TQF2 ครบทุก section','จัดทำ CLO → PLO matrix','รวบรวมประวัติอาจารย์ผู้รับผิดชอบหลักสูตร','ส่งสภาวิชาการเพื่อพิจารณา']},
+];
+function renderAction(){
+  document.getElementById('actionGrid').innerHTML=ACTION_DATA.map(a=>`
+    <div class="action-card"><h3>📌 ${a.title}</h3>
+      ${a.items.map(i=>`<div class="action-item"><input type="checkbox"><span>${i}</span></div>`).join('')}
+    </div>`).join('');
+}
+
+function renderRegistry(){
+  const showLock=adminMode;
+  document.getElementById('regLockHeader').style.display=showLock?'':'none';
+  const groups=[
+    {label:'ศึกษาทั่วไป (24 cr)',keys:['muge100','latp111','laen122','laen123','muliteracy','ge5lit']},
+    {label:'แกน/พื้นฐาน (25 cr)',keys:['scbibio','scbibiolab','scchchem1','scchlabgen','scmacalc','scpyphys','scpyphyslab','scchchem2','scmaode','scscint','scscb']},
+    {label:'เคมีหลัก + ชีวเคมี (33 cr)',keys:['analchem1','analchem2','chemdata','orgchem1','orgchem2','orgchem3','inorgchem1','inorgchem2','coordchem','physchem1','physchem2','physchem3','polymchem','matchem','funcmat','biochem']},
+    {label:'ปฏิบัติการสมรรถนะ (10 cr)',keys:['lab_meas','lab_synth','lab_biochem','lab_molchar','lab_matchar','lab_integ']},
+    {label:'วิชาชีพ/วิจัย (7 cr)',keys:['profskill','resmethod','seminar','resproject']},
+    {label:'เคมีสมัยใหม่ (12 cr)',keys:['molchar','matchar','chdatai','cheminf','greenchem','qsafety']},
+    {label:'Track เลือก (10 cr)',keys:['track1','track2','track3','track4','track5']},
+    {label:'เลือกเสรี (6 cr)',keys:['freeelec','gerem']},
+  ];
+  const tbody=document.getElementById('regBody');
+  tbody.innerHTML='';
+  groups.forEach(g=>{
+    const gr=document.createElement('tr'); gr.className='group-row';
+    gr.innerHTML=`<td colspan="${showLock?6:5}">${g.label}</td>`;
+    tbody.appendChild(gr);
+    g.keys.forEach(k=>{
+      const c=COURSES[k]; if(!c) return;
+      const tr=document.createElement('tr');
+      tr.innerHTML=`
+        <td><input value="${c.code}" onchange="COURSES['${k}'].code=this.value;renderGrid();markDirty()" style="width:130px;font-weight:700;font-family:'IBM Plex Mono',monospace;font-size:.78rem"></td>
+        <td><input value="${c.name}" onchange="COURSES['${k}'].name=this.value;renderGrid();markDirty()" style="width:100%;min-width:160px"></td>
+        <td><input type="number" value="${c.cr}" min="1" max="20" onchange="COURSES['${k}'].cr=+this.value;renderGrid();markDirty()" style="width:48px;text-align:center" inputmode="numeric"></td>
+        <td style="white-space:nowrap">${CAT_STYLE[c.cat]?.label||c.cat}</td>
+        <td><input value="${c.desc||''}" onchange="COURSES['${k}'].desc=this.value;markDirty()" style="width:100%;min-width:120px"></td>
+        ${showLock?`<td><button class="reg-lock-btn${LOCKED[k]?' locked':''}" onclick="toggleLock('${k}')">${LOCKED[k]?'🔒':'🔓'}</button></td>`:''}`;
+      tbody.appendChild(tr);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+function go(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-pages button, .bn-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+pg).classList.add('on');
+  ['n-'+pg,'bn-'+pg].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.add('on');
+  });
+  if(pg==='compare') renderCompare();
+  if(pg==='plo')     renderPLO();
+  if(pg==='tracks')  renderTracks();
+  if(pg==='action')  renderAction();
+  if(pg==='reg')     renderRegistry();
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ═══════════════════════════════════════════
+   DIRTY / SAVE
+═══════════════════════════════════════════ */
+let dirty=false;
+function markDirty(){dirty=true;document.getElementById('dirtyDot').style.display='block';}
+function saveHTML(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download='mahidol-chemistry-planner.html'; a.click();
+  dirty=false; document.getElementById('dirtyDot').style.display='none';
+  showToast('💾 บันทึกไฟล์แล้ว','ok');
+}
+
+/* Close overlays */
+['courseModal','addModal','moveModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',e=>{
+    if(e.target===document.getElementById(id)){
+      if(id==='courseModal') closeModal();
+      else if(id==='addModal') closeAddModal();
+      else if(id==='moveModal') closeMoveModal();
+    }
+  });
+});
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.prereq-search')&&!e.target.closest('.prereq-results')){
+    const r=document.getElementById('mPrereqResults');
+    if(r) r.style.display='none';
+  }
+});
+
+/* ── INIT ── */
+renderGrid();
+</script>
 </body>
 </html>
